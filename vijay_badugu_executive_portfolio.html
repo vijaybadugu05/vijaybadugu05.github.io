@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vijay Badugu — Executive Portfolio</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans, Fraunces & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons via CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Fraunces"', 'serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        studio: {
+                            dayBg: '#F8FAFC',
+                            dayCard: '#FFFFFF',
+                            dayBorder: '#E2E8F0',
+                            dayText: '#0F172A',
+                            dayMuted: '#475569',
+                            nightBg: '#090D16',
+                            nightCard: '#111827',
+                            nightBorder: '#1E293B',
+                            nightText: '#F8FAFC',
+                            nightMuted: '#94A3B8',
+                            accent: '#4F46E5',
+                            accentLight: '#6366F1',
+                            amber: '#D97706',
+                            emerald: '#059669'
+                        }
+                    },
+                    boxShadow: {
+                        'bento': '0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 1px 3px -1px rgba(15, 23, 42, 0.03)',
+                        'bento-hover': '0 14px 30px -6px rgba(79, 70, 229, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.06)',
+                        'bento-dark': '0 4px 24px -2px rgba(0, 0, 0, 0.45)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Subtle architectural grid background */
+        .studio-grid {
+            background-size: 32px 32px;
+            background-image: 
+                linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+        }
+        .dark .studio-grid {
+            background-image: 
+                linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+        }
+
+        /* Bento card tactile hover transitions */
+        .bento-card {
+            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), 
+                        box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1), 
+                        border-color 0.25s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Slide-over drawer animation */
+        #detailDrawer {
+            transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        #drawerBackdrop {
+            transition: opacity 0.28s ease;
+        }
+
+        /* Custom sleek scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.35);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(148, 163, 184, 0.55);
+        }
+    </style>
+</head>
+<body class="bg-studio-dayBg text-studio-dayText dark:bg-studio-nightBg dark:text-studio-nightText font-sans antialiased studio-grid selection:bg-indigo-500/20 selection:text-indigo-600 dark:selection:text-indigo-300">
+
+    <!-- ==================== 1. FLOATING FROSTED-GLASS NAVIGATION PILL ==================== -->
+    <header class="fixed top-4 inset-x-0 z-40 px-4 pointer-events-none">
+        <nav aria-label="Primary Navigation" class="max-w-5xl mx-auto pointer-events-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-studio-dayBorder dark:border-studio-nightBorder rounded-full px-3 sm:px-5 py-2.5 shadow-lg shadow-slate-900/5 dark:shadow-black/40 flex items-center justify-between gap-2">
+            
+            <!-- Brand Badge & Portfolio Title -->
+            <a href="#overview" class="flex items-center gap-2.5 group min-w-0">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-slate-900 text-white dark:bg-indigo-500 font-mono text-[11px] font-bold tracking-tight shrink-0 group-hover:scale-105 transition-transform">
+                    VB · 2022MEB1303
+                </span>
+                <span class="font-bold text-xs sm:text-sm tracking-tight truncate text-slate-900 dark:text-white">
+                    Vijay Badugu — Executive Portfolio
+                </span>
+            </a>
+
+            <!-- Desktop Section Jump Links -->
+            <div class="hidden md:flex items-center gap-1 text-xs font-semibold text-studio-dayMuted dark:text-studio-nightMuted">
+                <a href="#overview" class="px-3 py-1.5 rounded-full hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Overview</a>
+                <a href="#projects" class="px-3 py-1.5 rounded-full hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Projects</a>
+                <a href="#experience" class="px-3 py-1.5 rounded-full hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Experience</a>
+                <a href="#credentials" class="px-3 py-1.5 rounded-full hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Credentials</a>
+                <a href="#contact" class="px-3 py-1.5 rounded-full hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Contact</a>
+            </div>
+
+            <!-- Theme Toggle & Mobile Menu Trigger -->
+            <div class="flex items-center gap-1.5 shrink-0">
+                <button id="themeToggle" type="button" aria-label="Toggle Studio Daylight / Obsidian Studio Theme" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-medium border border-studio-dayBorder dark:border-studio-nightBorder bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 hover:border-indigo-500/50 transition-colors">
+                    <i data-lucide="sun" class="w-3.5 h-3.5 hidden dark:inline text-amber-400"></i>
+                    <i data-lucide="moon" class="w-3.5 h-3.5 inline dark:hidden text-indigo-600"></i>
+                    <span id="themeLabel" class="hidden sm:inline">Daylight</span>
+                </button>
+                <button id="mobileMenuBtn" type="button" aria-label="Open Navigation Menu" class="md:hidden p-2 rounded-full border border-studio-dayBorder dark:border-studio-nightBorder bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+                    <i data-lucide="menu" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Dropdown Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden max-w-5xl mx-auto mt-2 pointer-events-auto bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border border-studio-dayBorder dark:border-studio-nightBorder rounded-2xl p-3 shadow-xl">
+            <div class="grid grid-cols-2 gap-1.5 text-xs font-semibold">
+                <a href="#overview" class="mobile-nav-link px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">01. Overview</a>
+                <a href="#projects" class="mobile-nav-link px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">02. Projects</a>
+                <a href="#experience" class="mobile-nav-link px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">03. Experience</a>
+                <a href="#credentials" class="mobile-nav-link px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">04. Credentials</a>
+                <a href="#skills" class="mobile-nav-link px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">05. Skills</a>
+                <a href="#contact" class="mobile-nav-link px-3 py-2.5 rounded-xl bg-indigo-600 text-white text-center">06. Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN CONTAINER ==================== -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-28 pb-20 space-y-16">
+
+        <!-- ==================== 2. ASYMMETRICAL 12-COLUMN BENTO HERO GRID ==================== -->
+        <section id="overview" class="scroll-mt-28 space-y-4">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                
+                <!-- Main Identity Tile (7 Columns) -->
+                <div class="lg:col-span-7 bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 sm:p-8 shadow-bento dark:shadow-bento-dark flex flex-col justify-between relative overflow-hidden">
+                    <!-- Decorative geometric corner accent -->
+                    <div class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-indigo-500/5 dark:bg-indigo-500/10 pointer-events-none"></div>
+                    
+                    <div class="space-y-4 relative">
+                        <div class="inline-flex flex-wrap items-center gap-2">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                Available for 2027 Engineering &amp; Strategy Roles
+                            </span>
+                            <span class="px-2.5 py-1 rounded-full text-xs font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                                IIT Ropar · Mechanical
+                            </span>
+                        </div>
+
+                        <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight leading-[1.1] text-slate-900 dark:text-white">
+                            Vijay Badugu — Executive Portfolio
+                        </h1>
+
+                        <p class="font-mono text-xs sm:text-sm text-indigo-600 dark:text-indigo-400 font-semibold">
+                            Final-Year B.Tech Mechanical Engineering · IIT Ropar (2022–2027) · Roll No: 2022MEB1303
+                        </p>
+
+                        <p class="text-sm sm:text-base text-studio-dayMuted dark:text-studio-nightMuted leading-relaxed">
+                            Bridging precision mechanical engineering with quantitative research and strategic communications. Experienced in high-temperature surface metallurgy, IoT-monitored ionization air purification prototypes, heavy industrial operations at BHEL, AI agent workflows, and high-impact public relations outreach.
+                        </p>
+                    </div>
+
+                    <!-- Primary CTAs & Instant One-Click Copy Emails -->
+                    <div class="pt-6 mt-6 border-t border-studio-dayBorder dark:border-studio-nightBorder space-y-3 relative">
+                        <div class="flex flex-wrap items-center gap-2.5">
+                            <a href="#projects" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 dark:bg-indigo-600 text-white text-xs sm:text-sm font-semibold hover:bg-indigo-600 dark:hover:bg-indigo-500 transition-colors shadow-sm">
+                                <span>Explore Projects</span>
+                                <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-studio-dayBorder dark:border-studio-nightBorder bg-slate-50 dark:bg-slate-800/70 text-xs sm:text-sm font-semibold hover:border-indigo-500/50 transition-colors">
+                                <i data-lucide="send" class="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400"></i>
+                                <span>Direct Dispatch</span>
+                            </a>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-2 pt-1">
+                            <button type="button" onclick="copyEmail('2022meb1303@iitrpr.ac.in', this)" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800/90 hover:bg-indigo-50 dark:hover:bg-indigo-950/60 border border-transparent hover:border-indigo-500/30 font-mono text-xs text-slate-700 dark:text-slate-200 transition-all">
+                                <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400"></i>
+                                <span>2022meb1303@iitrpr.ac.in</span>
+                                <i data-lucide="copy" class="w-3 h-3 opacity-60"></i>
+                            </button>
+                            <button type="button" onclick="copyEmail('vijay.badugu05@gmail.com', this)" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800/90 hover:bg-indigo-50 dark:hover:bg-indigo-950/60 border border-transparent hover:border-indigo-500/30 font-mono text-xs text-slate-700 dark:text-slate-200 transition-all">
+                                <i data-lucide="mail" class="w-3.5 h-3.5 text-amber-600 dark:text-amber-400"></i>
+                                <span>vijay.badugu05@gmail.com</span>
+                                <i data-lucide="copy" class="w-3 h-3 opacity-60"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic & Coursework Snapshot Tile (5 Columns) -->
+                <div class="lg:col-span-5 bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 sm:p-7 shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <span class="font-mono text-[11px] uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-semibold">Academic Dossier</span>
+                                <h2 class="font-bold text-lg sm:text-xl text-slate-900 dark:text-white mt-0.5">
+                                    Indian Institute of Technology (IIT) Ropar
+                                </h2>
+                                <p class="text-xs sm:text-sm font-medium text-studio-dayMuted dark:text-studio-nightMuted">
+                                    B.Tech in Mechanical Engineering (2022–2027)
+                                </p>
+                            </div>
+                            <!-- Custom Architectural Emblem SVG -->
+                            <div class="w-11 h-11 rounded-2xl bg-indigo-50 dark:bg-indigo-950/70 border border-indigo-200/70 dark:border-indigo-800/60 flex items-center justify-center shrink-0">
+                                <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <circle cx="12" cy="12" r="9"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                    <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60">
+                                <span class="block font-mono text-[10px] uppercase text-studio-dayMuted dark:text-studio-nightMuted">Campus Location</span>
+                                <span class="font-semibold text-slate-800 dark:text-slate-100">Rupnagar, Punjab</span>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60">
+                                <span class="block font-mono text-[10px] uppercase text-studio-dayMuted dark:text-studio-nightMuted">Hometown</span>
+                                <span class="font-semibold text-slate-800 dark:text-slate-100">Vijayawada, AP</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="block font-mono text-[11px] uppercase tracking-wider text-studio-dayMuted dark:text-studio-nightMuted mb-2">
+                                Key Engineering &amp; Interdisciplinary Coursework
+                            </span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-indigo-50 text-indigo-800 dark:bg-indigo-950/80 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/60">Additive Manufacturing (ME549)</span>
+                                <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-indigo-50 text-indigo-800 dark:bg-indigo-950/80 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/60">Advanced Welding Tech (ME561)</span>
+                                <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">Development Eng. Project (CP301)</span>
+                                <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">Capstone Surface Eng. (CP302/303)</span>
+                                <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">Brain &amp; Language (HS506)</span>
+                                <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">Thermodynamics</span>
+                                <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">Manufacturing Technology</span>
+                                <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">Engineering Mechanics</span>
+                                <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">Biology for Engineers</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 Key Impact Metric Bento Tiles -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-2xl p-5 shadow-bento dark:shadow-bento-dark">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-mono text-[11px] uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-semibold">Air Quality IoT</span>
+                        <i data-lucide="wind" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
+                    </div>
+                    <div class="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">-40.97% PM2.5</div>
+                    <p class="text-xs text-studio-dayMuted dark:text-studio-nightMuted mt-1">30-Day IoT Air Purifying Lattice Trial (<span class="font-mono">p &lt; 0.0001</span>)</p>
+                </div>
+
+                <div class="bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-2xl p-5 shadow-bento dark:shadow-bento-dark">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-mono text-[11px] uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-semibold">Healthcare PR</span>
+                        <i data-lucide="megaphone" class="w-4 h-4 text-indigo-600 dark:text-indigo-400"></i>
+                    </div>
+                    <div class="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">190+ Hrs PR</div>
+                    <p class="text-xs text-studio-dayMuted dark:text-studio-nightMuted mt-1">Jarurat Care Foundation GI Cancer Outreach (<span class="font-mono">CERT-945CB75A</span>)</p>
+                </div>
+
+                <div class="bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-2xl p-5 shadow-bento dark:shadow-bento-dark">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-mono text-[11px] uppercase tracking-wider text-amber-600 dark:text-amber-400 font-semibold">Athletics</span>
+                        <i data-lucide="trophy" class="w-4 h-4 text-amber-600 dark:text-amber-400"></i>
+                    </div>
+                    <div class="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Inter-IIT Bronze</div>
+                    <p class="text-xs text-studio-dayMuted dark:text-studio-nightMuted mt-1">Represented IIT Ropar Cricket at IYSC + School Gold</p>
+                </div>
+
+                <div class="bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-2xl p-5 shadow-bento dark:shadow-bento-dark">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-mono text-[11px] uppercase tracking-wider text-sky-600 dark:text-sky-400 font-semibold">Flight &amp; AI</span>
+                        <i data-lucide="cpu" class="w-4 h-4 text-sky-600 dark:text-sky-400"></i>
+                    </div>
+                    <div class="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">DGCA &amp; AI Certified</div>
+                    <p class="text-xs text-studio-dayMuted dark:text-studio-nightMuted mt-1">IIT Bombay Drone Pilot &amp; Google/Kaggle AI Agents</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 3. INTERACTIVE BENTO PROJECTS & RESEARCH SHOWCASE ==================== -->
+        <section id="projects" class="scroll-mt-28 space-y-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <span class="font-mono text-xs uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-semibold">02 // Engineering, Research &amp; Narrative Works</span>
+                    <h2 class="font-serif text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mt-1">Projects &amp; Technical Dossiers</h2>
+                </div>
+
+                <!-- Category Filter Tabs -->
+                <div role="tablist" aria-label="Filter Projects" class="inline-flex flex-wrap gap-1.5 p-1.5 rounded-2xl bg-white dark:bg-slate-900 border border-studio-dayBorder dark:border-studio-nightBorder shadow-sm">
+                    <button type="button" data-project-filter="all" class="project-filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 text-white dark:bg-indigo-600 transition-colors">All (5)</button>
+                    <button type="button" data-project-filter="mechanical" class="project-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold text-studio-dayMuted dark:text-studio-nightMuted hover:text-slate-900 dark:hover:text-white transition-colors">Mechanical &amp; Hardware</button>
+                    <button type="button" data-project-filter="research" class="project-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold text-studio-dayMuted dark:text-studio-nightMuted hover:text-slate-900 dark:hover:text-white transition-colors">Research &amp; Analytics</button>
+                    <button type="button" data-project-filter="creative" class="project-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold text-studio-dayMuted dark:text-studio-nightMuted hover:text-slate-900 dark:hover:text-white transition-colors">Creative &amp; Media</button>
+                </div>
+            </div>
+
+            <!-- Bento Grid for Projects -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+
+                <!-- FEATURED HERO BENTO CARD (Spans 8 Cols): CP301 Ionization Air Purifying Lattice -->
+                <article data-category="mechanical research" class="project-card lg:col-span-8 bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 sm:p-7 shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+                    <div class="space-y-5">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="px-3 py-1 rounded-full text-[11px] font-mono font-bold bg-indigo-600 text-white">FEATURED · CP301 DEP</span>
+                                <span class="px-2.5 py-1 rounded-full text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">Mechanical &amp; IoT</span>
+                            </div>
+                            <span class="font-mono text-xs text-studio-dayMuted dark:text-studio-nightMuted">Guide: Dr. Prabir Sarkar</span>
+                        </div>
+
+                        <div>
+                            <h3 class="font-serif text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                                CP301: Ionization Air Purifying Lattice (Development Engineering Project)
+                            </h3>
+                            <p class="text-xs font-mono text-studio-dayMuted dark:text-studio-nightMuted mt-1">
+                                Co-authored with Aman Tadavi (2022MEB1355) · Department of Mechanical Engineering, IIT Ropar
+                            </p>
+                            <p class="text-sm text-studio-dayMuted dark:text-studio-nightMuted mt-3 leading-relaxed">
+                                Engineered a low-power architectural <span class="italic">jali</span> window lattice (60×120 cm seasoned pine wood frame, 30° inclined slats, stainless steel mesh) energized by a 7–10 kV DC Flyback transformer. Validated across a 30-day indoor/outdoor trial near NH-205 using dual Arduino Uno + ESP8266 NodeMCU sensor stations logging every 2 minutes.
+                            </p>
+                        </div>
+
+                        <!-- Interactive Pollutant Telemetry Visualizer -->
+                        <div class="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 space-y-3.5">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <span class="font-mono text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                    30-Day Field Trial Pollutant Telemetry (NH-205, Rupnagar)
+                                </span>
+                                <div class="inline-flex rounded-lg bg-white dark:bg-slate-800 p-0.5 border border-slate-200 dark:border-slate-700 text-[11px] font-mono">
+                                    <button type="button" onclick="switchTelemetryView('reduction')" id="telBtnReduction" class="px-2.5 py-1 rounded-md bg-indigo-600 text-white font-semibold transition-colors">% Reduction</button>
+                                    <button type="button" onclick="switchTelemetryView('concentration')" id="telBtnConc" class="px-2.5 py-1 rounded-md text-slate-600 dark:text-slate-300 transition-colors">Ext vs Int</button>
+                                </div>
+                            </div>
+
+                            <!-- Dynamic Telemetry Bars Container -->
+                            <div id="telemetryBars" class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-xs">
+                                <!-- Populated via JS -->
+                            </div>
+
+                            <div class="pt-2 border-t border-slate-200/70 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-studio-dayMuted dark:text-studio-nightMuted">
+                                <span>Sensors: MQ-135, MQ-7, MICS-6814, GP2Y1014AU0F</span>
+                                <span>Stats: R Studio &amp; Jamovi Paired t-tests (p &lt; 0.001)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-5 mt-5 border-t border-studio-dayBorder dark:border-studio-nightBorder flex flex-wrap items-center justify-between gap-3">
+                        <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+                            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">7–10 kV Flyback</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">Arduino + ESP8266</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">R Studio</span>
+                        </div>
+                        <button type="button" onclick="openDrawer('project', 'cp301')" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
+                            <span>Inspect Full Technical Specs</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- CARD 2 (4 Cols): CP302 & CP303 Surface Coating & Metallurgy -->
+                <article data-category="mechanical" class="project-card lg:col-span-4 bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20">CP302 &amp; CP303</span>
+                            <span class="font-mono text-xs text-studio-dayMuted dark:text-studio-nightMuted">Feb – Apr 2026</span>
+                        </div>
+
+                        <!-- Custom SVG Surface Diffusion Schematic -->
+                        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200/70 dark:border-slate-800">
+                            <svg class="w-full h-16" viewBox="0 0 260 60" fill="none">
+                                <rect x="10" y="34" width="240" height="20" rx="3" fill="#64748B" fill-opacity="0.25" stroke="#64748B" stroke-width="1.2"/>
+                                <rect x="10" y="20" width="240" height="14" rx="2" fill="#D97706" fill-opacity="0.3" stroke="#D97706" stroke-width="1.2" stroke-dasharray="3 2"/>
+                                <path d="M50 6v12M130 6v12M210 6v12" stroke="#4F46E5" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M46 14l4 4 4-4M126 14l4 4 4-4M206 14l4 4 4-4" stroke="#4F46E5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <text x="18" y="30" fill="currentColor" font-family="JetBrains Mono" font-size="8" opacity="0.85">Aluminide Diffusion Layer</text>
+                                <text x="18" y="47" fill="currentColor" font-family="JetBrains Mono" font-size="8" opacity="0.75">Mild Steel Substrate (Δm Metrology)</text>
+                            </svg>
+                        </div>
+
+                        <div>
+                            <h3 class="font-serif text-xl font-bold text-slate-900 dark:text-white">
+                                Surface Coating &amp; Metallurgy
+                            </h3>
+                            <p class="text-sm text-studio-dayMuted dark:text-studio-nightMuted mt-2 leading-relaxed">
+                                Executed electroplating and high-temperature pack cementation (aluminizing) experiments on mild steel specimens. Quantified diffusion kinetics and coating thickness via precision analytical mass-gain metrology.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-5 mt-5 border-t border-studio-dayBorder dark:border-studio-nightBorder flex items-center justify-between gap-2">
+                        <span class="font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted">Pack Aluminizing · Electroplating</span>
+                        <button type="button" onclick="openDrawer('project', 'cp302')" class="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
+                            <span>Details</span>
+                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- CARD 3 (4 Cols): Life Enhancement of Gun Barrel Using Surface Treatment Techniques -->
+                <article data-category="mechanical research" class="project-card lg:col-span-4 bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/20">Research Poster</span>
+                            <span class="font-mono text-xs text-studio-dayMuted dark:text-studio-nightMuted">Nov 2025</span>
+                        </div>
+
+                        <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200/70 dark:border-slate-800 font-mono text-[11px] text-slate-700 dark:text-slate-300 space-y-1">
+                            <div class="flex justify-between">
+                                <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Lamé's Hoop Stress:</span>
+                                <span>P = 200–400 MPa</span>
+                            </div>
+                            <div class="text-[10px] opacity-80">σ_θ = (p_i r_i² - p_o r_o²)/(r_o² - r_i²) + (p_i - p_o)r_i²r_o² / r²(r_o² - r_i²)</div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-serif text-xl font-bold text-slate-900 dark:text-white">
+                                Life Enhancement of Gun Barrel Using Surface Treatment Techniques
+                            </h3>
+                            <p class="text-sm text-studio-dayMuted dark:text-studio-nightMuted mt-2 leading-relaxed">
+                                Ballistic mechanics and metallurgical study evaluating AISI 4140/4150 gun barrel steels, hard chrome bore lining, gas nitriding, rifling twist dynamics, and thick-walled cylinder stress distributions under extreme thermal-mechanical fatigue.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-5 mt-5 border-t border-studio-dayBorder dark:border-studio-nightBorder flex items-center justify-between gap-2">
+                        <span class="font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted">AISI 4140/4150 · Chrome &amp; Nitriding</span>
+                        <button type="button" onclick="openDrawer('project', 'barrel')" class="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
+                            <span>Details</span>
+                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- CARD 4 (4 Cols): HS506 Neurological & Emotional Mechanisms of Profanity -->
+                <article data-category="research" class="project-card lg:col-span-4 bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-sky-500/10 text-sky-700 dark:text-sky-300 border border-sky-500/20">HS506 · Brain &amp; Language</span>
+                            <span class="font-mono text-xs text-studio-dayMuted dark:text-studio-nightMuted">Mar 2026</span>
+                        </div>
+
+                        <div>
+                            <h3 class="font-serif text-xl font-bold text-slate-900 dark:text-white">
+                                Neurological &amp; Emotional Mechanisms of Profanity
+                            </h3>
+                            <p class="text-sm text-studio-dayMuted dark:text-studio-nightMuted mt-2.5 leading-relaxed">
+                                Empirical survey and neuro-linguistic analysis investigating limbic-basal ganglia pathways, emotional valence, stress modulation, and bilingual code-switching effects during taboo language processing.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-5 mt-5 border-t border-studio-dayBorder dark:border-studio-nightBorder flex items-center justify-between gap-2">
+                        <span class="font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted">Cognitive Science · Survey Analytics</span>
+                        <button type="button" onclick="openDrawer('project', 'hs506')" class="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
+                            <span>Details</span>
+                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- CARD 5 (4 Cols): Vijayawada Crime-Thriller Screenplay (Tenglish Narrative) -->
+                <article data-category="creative" class="project-card lg:col-span-4 bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-rose-500/10 text-rose-700 dark:text-rose-300 border border-rose-500/20">Screenplay · 15 Pages</span>
+                            <span class="font-mono text-xs text-studio-dayMuted dark:text-studio-nightMuted">Oct 2026</span>
+                        </div>
+
+                        <div>
+                            <h3 class="font-serif text-xl font-bold text-slate-900 dark:text-white">
+                                Vijayawada Crime-Thriller Screenplay (Tenglish Narrative)
+                            </h3>
+                            <p class="text-sm text-studio-dayMuted dark:text-studio-nightMuted mt-2.5 leading-relaxed">
+                                A 15-page novel-style crime thriller script set along the Krishna River and urban corridors of Vijayawada, blending authentic Telugu-English ("Tenglish") dialogue with cinematic pacing and multi-layered character arcs.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-5 mt-5 border-t border-studio-dayBorder dark:border-studio-nightBorder flex items-center justify-between gap-2">
+                        <span class="font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted">Screenwriting · Tenglish Dialogue</span>
+                        <button type="button" onclick="openDrawer('project', 'screenplay')" class="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
+                            <span>Details</span>
+                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ==================== 4. EXPERIENCE & CAMPUS LEADERSHIP BENTO MATRIX ==================== -->
+        <section id="experience" class="scroll-mt-28 space-y-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <span class="font-mono text-xs uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-semibold">03 // Industry, Outreach &amp; Governance</span>
+                    <h2 class="font-serif text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mt-1">Experience &amp; Campus Leadership</h2>
+                </div>
+
+                <!-- Experience Filter Tabs -->
+                <div role="tablist" aria-label="Filter Experience" class="inline-flex flex-wrap gap-1.5 p-1.5 rounded-2xl bg-white dark:bg-slate-900 border border-studio-dayBorder dark:border-studio-nightBorder shadow-sm">
+                    <button type="button" data-exp-filter="all" class="exp-filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 text-white dark:bg-indigo-600 transition-colors">All Roles (6)</button>
+                    <button type="button" data-exp-filter="engineering" class="exp-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold text-studio-dayMuted dark:text-studio-nightMuted hover:text-slate-900 dark:hover:text-white transition-colors">Engineering &amp; Operations</button>
+                    <button type="button" data-exp-filter="pr" class="exp-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold text-studio-dayMuted dark:text-studio-nightMuted hover:text-slate-900 dark:hover:text-white transition-colors">PR &amp; Outreach</button>
+                    <button type="button" data-exp-filter="leadership" class="exp-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold text-studio-dayMuted dark:text-studio-nightMuted hover:text-slate-900 dark:hover:text-white transition-colors">Campus Leadership</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                
+                <!-- Role 1: Jarurat Care Foundation -->
+                <div data-exp-cat="pr" class="exp-card bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300">PR &amp; Outreach</span>
+                            <span class="font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted">190 Hrs</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white">Media &amp; PR Intern</h3>
+                            <p class="text-xs font-semibold text-indigo-600 dark:text-indigo-400">Jarurat Care Foundation</p>
+                            <p class="font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted mt-0.5">26/09/2026 – 21/11/2026 · ID: CERT-945CB75A</p>
+                        </div>
+                        <p class="text-xs sm:text-sm text-studio-dayMuted dark:text-studio-nightMuted leading-relaxed">
+                            Led social media outreach, structured Twitter/X content calendars, and public health awareness campaigns focused on Gastrointestinal (GI) Cancer education and patient support.
+                        </p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-studio-dayBorder dark:border-studio-nightBorder font-mono text-[11px] text-emerald-600 dark:text-emerald-400">
+                        Verified Internship · 190/200 Hrs Completed
+                    </div>
+                </div>
+
+                <!-- Role 2: Pledge India Foundation -->
+                <div data-exp-cat="pr" class="exp-card bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300">PR &amp; Outreach</span>
+                            <span class="font-mono text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold">Active</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white">Communications &amp; Fundraising Outreach Intern</h3>
+                            <p class="text-xs font-semibold text-indigo-600 dark:text-indigo-400">Pledge India Foundation</p>
+                            <p class="font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted mt-0.5">Nov 2026 – Present</p>
+                        </div>
+                        <p class="text-xs sm:text-sm text-studio-dayMuted dark:text-studio-nightMuted leading-relaxed">
+                            Driving donor engagement campaigns, compelling fundraising narratives, and digital outreach assets to scale community impact initiatives.
+                        </p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-studio-dayBorder dark:border-studio-nightBorder font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted">
+                        Strategic Communications · Donor Mobilization
+                    </div>
+                </div>
+
+                <!-- Role 3: BHEL Hyderabad -->
+                <div data-exp-cat="engineering" class="exp-card bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-amber-500/10 text-amber-700 dark:text-amber-300">Engineering &amp; Operations</span>
+                            <span class="font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted">Summer 2025</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white">Industrial Engineering Intern</h3>
+                            <p class="text-xs font-semibold text-amber-600 dark:text-amber-400">Bharat Heavy Electricals Limited (BHEL), Hyderabad</p>
+                            <p class="font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted mt-0.5">May – Jun 2025</p>
+                        </div>
+                        <p class="text-xs sm:text-sm text-studio-dayMuted dark:text-studio-nightMuted leading-relaxed">
+                            Analyzed shop-floor production workflows, industrial engineering operations, machining sequencing, and heavy manufacturing processes across power-sector equipment bays.
+                        </p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-studio-dayBorder dark:border-studio-nightBorder font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted">
+                        Heavy Manufacturing · Shop-Floor Workflow
+                    </div>
+                </div>
+
+                <!-- Role 4: Internshala Student Partner (ISP 55) -->
+                <div data-exp-cat="pr leadership" class="exp-card bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-sky-500/10 text-sky-700 dark:text-sky-300">Campus &amp; Outreach</span>
+                            <span class="font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted">Jan 2026</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white">Campus Ambassador (ISP 55)</h3>
+                            <p class="text-xs font-semibold text-sky-600 dark:text-sky-400">Internshala Student Partner</p>
+                            <p class="font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted mt-0.5">January 2026 · IIT Ropar</p>
+                        </div>
+                        <p class="text-xs sm:text-sm text-studio-dayMuted dark:text-studio-nightMuted leading-relaxed">
+                            Promoted career skill-building initiatives across student cohorts and represented IIT Ropar in the ISP 55 First Trainings Contest Webinar.
+                        </p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-studio-dayBorder dark:border-studio-nightBorder font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted">
+                        Student Advocacy · Career Upskilling
+                    </div>
+                </div>
+
+                <!-- Role 5: General Secretary — Telugu Cultural Association (TCA) -->
+                <div data-exp-cat="leadership" class="exp-card bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-300">Campus Leadership</span>
+                            <span class="font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted">2024 – 2025</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white">General Secretary</h3>
+                            <p class="text-xs font-semibold text-emerald-600 dark:text-emerald-400">Telugu Cultural Association (TCA), IIT Ropar</p>
+                            <p class="font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted mt-0.5">Academic Year 2024 – 2025</p>
+                        </div>
+                        <p class="text-xs sm:text-sm text-studio-dayMuted dark:text-studio-nightMuted leading-relaxed">
+                            Directed flagship cultural programming, annual budget coordination, vendor logistics, and community engagement events across the IIT Ropar campus.
+                        </p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-studio-dayBorder dark:border-studio-nightBorder font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted">
+                        Executive Governance · Event Operations
+                    </div>
+                </div>
+
+                <!-- Role 6: Hostel Representative -->
+                <div data-exp-cat="leadership" class="exp-card bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 shadow-bento dark:shadow-bento-dark flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-300">Campus Leadership</span>
+                            <span class="font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted">IIT Ropar</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white">Hostel Representative</h3>
+                            <p class="text-xs font-semibold text-emerald-600 dark:text-emerald-400">Student Affairs &amp; Hostel Council, IIT Ropar</p>
+                            <p class="font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted mt-0.5">Residential Governance</p>
+                        </div>
+                        <p class="text-xs sm:text-sm text-studio-dayMuted dark:text-studio-nightMuted leading-relaxed">
+                            Represented student resident welfare, mess quality governance, infrastructure maintenance escalation, and day-to-day hostel operations.
+                        </p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-studio-dayBorder dark:border-studio-nightBorder font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted">
+                        Resident Welfare · Mess &amp; Facility Ops
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==================== 5. VERIFIED CREDENTIALS & LICENSES BENTO GRID ==================== -->
+        <section id="credentials" class="scroll-mt-28 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                <div>
+                    <span class="font-mono text-xs uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-semibold">04 // Licenses, Certifications &amp; Honors</span>
+                    <h2 class="font-serif text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mt-1">Verified Credentials Archive</h2>
+                </div>
+                <p class="text-xs font-mono text-studio-dayMuted dark:text-studio-nightMuted">
+                    Click any credential tile to open official verification metadata
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                
+                <!-- Cert 1: Jarurat Care Foundation -->
+                <button type="button" onclick="openDrawer('cert', 'jarurat')" class="text-left bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder hover:border-indigo-500/50 rounded-3xl p-5 shadow-bento dark:shadow-bento-dark flex flex-col justify-between group">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+                                <i data-lucide="award" class="w-5 h-5"></i>
+                            </span>
+                            <span class="font-mono text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 font-semibold">CERT-945CB75A</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                Certificate of Internship in Public Relations
+                            </h3>
+                            <p class="text-xs text-studio-dayMuted dark:text-studio-nightMuted mt-1">
+                                Jarurat Care Foundation · 190 Hours
+                            </p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-studio-dayBorder dark:border-studio-nightBorder flex items-center justify-between text-[11px] font-mono text-studio-dayMuted dark:text-studio-nightMuted">
+                        <span>Darpan: UA/2023/0370191</span>
+                        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Verify →</span>
+                    </div>
+                </button>
+
+                <!-- Cert 2: DGCA Drone Pilot Training -->
+                <button type="button" onclick="openDrawer('cert', 'dgca')" class="text-left bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder hover:border-indigo-500/50 rounded-3xl p-5 shadow-bento dark:shadow-bento-dark flex flex-col justify-between group">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950 text-sky-600 dark:text-sky-400 flex items-center justify-center">
+                                <i data-lucide="navigation" class="w-5 h-5"></i>
+                            </span>
+                            <span class="font-mono text-[11px] px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-700 dark:text-sky-300 font-semibold">AVIATION</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                DGCA Certified Drone Pilot License Training
+                            </h3>
+                            <p class="text-xs text-studio-dayMuted dark:text-studio-nightMuted mt-1">
+                                FlyQVision in association with IIT Bombay
+                            </p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-studio-dayBorder dark:border-studio-nightBorder flex items-center justify-between text-[11px] font-mono text-studio-dayMuted dark:text-studio-nightMuted">
+                        <span>UAV Flight &amp; Regulations</span>
+                        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Verify →</span>
+                    </div>
+                </button>
+
+                <!-- Cert 3: Google AI Agents Intensive -->
+                <button type="button" onclick="openDrawer('cert', 'googleai')" class="text-left bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder hover:border-indigo-500/50 rounded-3xl p-5 shadow-bento dark:shadow-bento-dark flex flex-col justify-between group">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="w-9 h-9 rounded-xl bg-violet-50 dark:bg-violet-950 text-violet-600 dark:text-violet-400 flex items-center justify-center">
+                                <i data-lucide="sparkles" class="w-5 h-5"></i>
+                            </span>
+                            <span class="font-mono text-[11px] px-2.5 py-0.5 rounded-full bg-violet-500/10 text-violet-700 dark:text-violet-300 font-semibold">CAPSTONE</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                Google AI Agents Intensive (5-Day Capstone Program)
+                            </h3>
+                            <p class="text-xs text-studio-dayMuted dark:text-studio-nightMuted mt-1">
+                                Google &amp; Kaggle
+                            </p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-studio-dayBorder dark:border-studio-nightBorder flex items-center justify-between text-[11px] font-mono text-studio-dayMuted dark:text-studio-nightMuted">
+                        <span>Agentic AI Architectures</span>
+                        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Verify →</span>
+                    </div>
+                </button>
+
+                <!-- Cert 4: Consumer Awareness Quiz Certificate -->
+                <button type="button" onclick="openDrawer('cert', 'mygov')" class="text-left bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder hover:border-indigo-500/50 rounded-3xl p-5 shadow-bento dark:shadow-bento-dark flex flex-col justify-between group">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+                                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                            </span>
+                            <span class="font-mono text-[11px] px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-300 font-semibold">GOVT OF INDIA</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                Consumer Awareness Quiz ("Jago Grahak Jago")
+                            </h3>
+                            <p class="text-xs text-studio-dayMuted dark:text-studio-nightMuted mt-1">
+                                Ministry of Consumer Affairs, Food &amp; Public Distribution &amp; MyGov
+                            </p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-studio-dayBorder dark:border-studio-nightBorder flex items-center justify-between text-[11px] font-mono text-studio-dayMuted dark:text-studio-nightMuted">
+                        <span>Signed: Smt. Nidhi Khare</span>
+                        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Verify →</span>
+                    </div>
+                </button>
+
+                <!-- Cert 5: ISP 55 First Trainings Contest Webinar -->
+                <button type="button" onclick="openDrawer('cert', 'isp55')" class="text-left bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder hover:border-indigo-500/50 rounded-3xl p-5 shadow-bento dark:shadow-bento-dark flex flex-col justify-between group">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="w-9 h-9 rounded-xl bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                                <i data-lucide="badge-check" class="w-5 h-5"></i>
+                            </span>
+                            <span class="font-mono text-[11px] px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-700 dark:text-blue-300 font-semibold">07/01/2026</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                ISP 55 First Trainings Contest Webinar Certificate
+                            </h3>
+                            <p class="text-xs text-studio-dayMuted dark:text-studio-nightMuted mt-1">
+                                Internshala Student Partner Team
+                            </p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-studio-dayBorder dark:border-studio-nightBorder flex items-center justify-between text-[11px] font-mono text-studio-dayMuted dark:text-studio-nightMuted">
+                        <span>VP Marketing · Internshala</span>
+                        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Verify →</span>
+                    </div>
+                </button>
+
+                <!-- Cert 6: Samsung Members Star Community Shortlist -->
+                <button type="button" onclick="openDrawer('cert', 'samsung')" class="text-left bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder hover:border-indigo-500/50 rounded-3xl p-5 shadow-bento dark:shadow-bento-dark flex flex-col justify-between group">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                                <i data-lucide="star" class="w-5 h-5"></i>
+                            </span>
+                            <span class="font-mono text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 font-semibold">SEP 2026</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                Samsung Members Star Community Shortlist
+                            </h3>
+                            <p class="text-xs text-studio-dayMuted dark:text-studio-nightMuted mt-1">
+                                Samsung India
+                            </p>
+                        </div>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-studio-dayBorder dark:border-studio-nightBorder flex items-center justify-between text-[11px] font-mono text-studio-dayMuted dark:text-studio-nightMuted">
+                        <span>Tech Advocacy &amp; Creator</span>
+                        <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Verify →</span>
+                    </div>
+                </button>
+
+            </div>
+        </section>
+
+        <!-- ==================== 6. CATEGORIZED SKILLS MATRIX (3 BENTO COLUMNS) ==================== -->
+        <section id="skills" class="scroll-mt-28 space-y-6">
+            <div>
+                <span class="font-mono text-xs uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-semibold">05 // Technical &amp; Strategic Stack</span>
+                <h2 class="font-serif text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mt-1">Categorized Skills Matrix</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                
+                <!-- Column 1: Mechanical & Simulation -->
+                <div class="bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 shadow-bento dark:shadow-bento-dark space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+                            <i data-lucide="cog" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-base text-slate-900 dark:text-white">Mechanical &amp; Simulation</h3>
+                            <p class="font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted">CAD, Metallurgy &amp; Prototyping</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800">AutoCAD &amp; SketchUp Pro</span>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800">Additive Manufacturing (ME549)</span>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800">Advanced Welding (ME561)</span>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800">Pack Cementation &amp; Electroplating</span>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800">Thick-Walled Cylinder Stress (Lamé)</span>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800">DGCA UAV Flight Operations</span>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800">Shop-Floor Workflow Analysis</span>
+                    </div>
+                </div>
+
+                <!-- Column 2: Embedded IoT & Data Analytics -->
+                <div class="bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 shadow-bento dark:shadow-bento-dark space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+                            <i data-lucide="activity" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-base text-slate-900 dark:text-white">Embedded IoT &amp; Data Analytics</h3>
+                            <p class="font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted">Sensors, AI Agents &amp; Statistics</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800">Arduino Uno &amp; MEGA 2560</span>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800">ESP8266 NodeMCU Wi-Fi Telemetry</span>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800">Electrochemical &amp; PM Sensors</span>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800">7–10 kV Flyback High-Voltage Circuits</span>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800">R Studio &amp; Jamovi (Paired t-tests)</span>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800">Google &amp; Kaggle AI Agents</span>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800">Microsoft Excel Modeling</span>
+                    </div>
+                </div>
+
+                <!-- Column 3: Media, Design & Languages -->
+                <div class="bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 shadow-bento dark:shadow-bento-dark space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                            <i data-lucide="pen-tool" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-base text-slate-900 dark:text-white">Media, Design &amp; Languages</h3>
+                            <p class="font-mono text-[11px] text-studio-dayMuted dark:text-studio-nightMuted">PR, Screenwriting &amp; Trilingual</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800">Public Relations &amp; Healthcare Outreach</span>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800">Fundraising &amp; Donor Campaigns</span>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800">Social Media Calendars (X / LinkedIn)</span>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800">Screenwriting &amp; Narrative Design</span>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/60">Telugu (Native)</span>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/60">English (Fluent)</span>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/60">Hindi (Proficient)</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==================== 7. EXECUTIVE CONTACT & DIRECT DISPATCH BENTO SECTION ==================== -->
+        <section id="contact" class="scroll-mt-28 space-y-6">
+            <div>
+                <span class="font-mono text-xs uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-semibold">06 // Direct Correspondence</span>
+                <h2 class="font-serif text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mt-1">Executive Contact &amp; Direct Dispatch</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+                
+                <!-- Left 5 Cols: Dual Official Inbox Cards -->
+                <div class="lg:col-span-5 space-y-4 flex flex-col justify-between">
+                    
+                    <!-- Academic Email Card -->
+                    <div class="bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 shadow-bento dark:shadow-bento-dark space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300">IIT ROPAR ACADEMIC</span>
+                            <i data-lucide="graduation-cap" class="w-4 h-4 text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-studio-dayMuted dark:text-studio-nightMuted">For research collaborations, faculty inquiries &amp; engineering roles:</p>
+                            <p class="font-mono text-sm sm:text-base font-bold text-slate-900 dark:text-white mt-1 break-all">2022meb1303@iitrpr.ac.in</p>
+                        </div>
+                        <div class="flex items-center gap-2 pt-1">
+                            <a href="mailto:2022meb1303@iitrpr.ac.in?subject=Inquiry%20from%20Vijay%20Badugu%20Executive%20Portfolio" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 dark:bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-600 transition-colors">
+                                <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+                                <span>Compose Mail</span>
+                            </a>
+                            <button type="button" onclick="copyEmail('2022meb1303@iitrpr.ac.in', this)" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-studio-dayBorder dark:border-studio-nightBorder bg-slate-50 dark:bg-slate-800 text-xs font-mono font-medium hover:border-indigo-500/50 transition-colors">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Personal Email Card -->
+                    <div class="bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 shadow-bento dark:shadow-bento-dark space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-amber-500/10 text-amber-700 dark:text-amber-300">PERSONAL &amp; MEDIA</span>
+                            <i data-lucide="at-sign" class="w-4 h-4 text-amber-600 dark:text-amber-400"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-studio-dayMuted dark:text-studio-nightMuted">For PR campaigns, media, creative scripts &amp; direct networking:</p>
+                            <p class="font-mono text-sm sm:text-base font-bold text-slate-900 dark:text-white mt-1 break-all">vijay.badugu05@gmail.com</p>
+                        </div>
+                        <div class="flex items-center gap-2 pt-1">
+                            <a href="mailto:vijay.badugu05@gmail.com?subject=Inquiry%20from%20Vijay%20Badugu%20Executive%20Portfolio" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 dark:bg-amber-600 text-white text-xs font-semibold hover:bg-amber-600 transition-colors">
+                                <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+                                <span>Compose Mail</span>
+                            </a>
+                            <button type="button" onclick="copyEmail('vijay.badugu05@gmail.com', this)" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-studio-dayBorder dark:border-studio-nightBorder bg-slate-50 dark:bg-slate-800 text-xs font-mono font-medium hover:border-amber-500/50 transition-colors">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right 7 Cols: Interactive Quick Message Composer -->
+                <div class="lg:col-span-7 bento-card bg-studio-dayCard dark:bg-studio-nightCard border border-studio-dayBorder dark:border-studio-nightBorder rounded-3xl p-6 sm:p-8 shadow-bento dark:shadow-bento-dark">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="font-serif text-xl font-bold text-slate-900 dark:text-white">Quick Message Composer</h3>
+                                <p class="text-xs text-studio-dayMuted dark:text-studio-nightMuted mt-0.5">Select your target inbox and launch a pre-formatted email draft in your default mail client.</p>
+                            </div>
+                            <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 font-mono text-[11px]">
+                                <i data-lucide="zap" class="w-3 h-3 text-indigo-500"></i> Instant Mailto
+                            </span>
+                        </div>
+
+                        <form id="dispatchForm" onsubmit="handleDispatchSubmit(event)" class="space-y-4 pt-2">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label for="recipientSelect" class="block font-mono text-[11px] uppercase tracking-wider text-studio-dayMuted dark:text-studio-nightMuted mb-1.5">Target Inbox</label>
+                                    <select id="recipientSelect" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-studio-dayBorder dark:border-studio-nightBorder text-xs sm:text-sm font-mono focus:outline-none focus:border-indigo-500">
+                                        <option value="2022meb1303@iitrpr.ac.in">2022meb1303@iitrpr.ac.in (Academic)</option>
+                                        <option value="vijay.badugu05@gmail.com">vijay.badugu05@gmail.com (Personal)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="senderName" class="block font-mono text-[11px] uppercase tracking-wider text-studio-dayMuted dark:text-studio-nightMuted mb-1.5">Your Name / Organization</label>
+                                    <input id="senderName" type="text" required placeholder="e.g., Dr. Sharma / Recruitment Team" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-studio-dayBorder dark:border-studio-nightBorder text-xs sm:text-sm focus:outline-none focus:border-indigo-500">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="messageSubject" class="block font-mono text-[11px] uppercase tracking-wider text-studio-dayMuted dark:text-studio-nightMuted mb-1.5">Subject</label>
+                                <input id="messageSubject" type="text" required placeholder="e.g., Research Collaboration / Mechanical Engineering Opportunity" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-studio-dayBorder dark:border-studio-nightBorder text-xs sm:text-sm focus:outline-none focus:border-indigo-500">
+                            </div>
+
+                            <div>
+                                <label for="messageBody" class="block font-mono text-[11px] uppercase tracking-wider text-studio-dayMuted dark:text-studio-nightMuted mb-1.5">Message Brief</label>
+                                <textarea id="messageBody" rows="3" required placeholder="Hello Vijay, I reviewed your Executive Portfolio and would like to connect regarding..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-studio-dayBorder dark:border-studio-nightBorder text-xs sm:text-sm focus:outline-none focus:border-indigo-500 resize-none"></textarea>
+                            </div>
+
+                            <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+                                <span id="dispatchFeedback" class="text-xs font-mono text-emerald-600 dark:text-emerald-400"></span>
+                                <button type="submit" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm font-semibold shadow-sm transition-colors">
+                                    <i data-lucide="send" class="w-4 h-4"></i>
+                                    <span>Launch Pre-Filled Email</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==================== FOOTER ==================== -->
+        <footer class="pt-8 border-t border-studio-dayBorder dark:border-studio-nightBorder flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-studio-dayMuted dark:text-studio-nightMuted">
+            <p class="font-semibold text-slate-800 dark:text-slate-200 text-center sm:text-left">
+                Vijay Badugu — Executive Portfolio · B.Tech Mechanical Engineering, IIT Ropar (2022MEB1303)
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <a href="mailto:2022meb1303@iitrpr.ac.in" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">2022meb1303@iitrpr.ac.in</a>
+                <span>·</span>
+                <a href="mailto:vijay.badugu05@gmail.com" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">vijay.badugu05@gmail.com</a>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- ==================== SLIDE-OVER DETAIL & VERIFICATION DRAWER ==================== -->
+    <div id="drawerBackdrop" onclick="closeDrawer()" class="fixed inset-0 z-50 bg-slate-950/50 backdrop-blur-sm hidden opacity-0"></div>
+    <aside id="detailDrawer" aria-modal="true" role="dialog" aria-labelledby="drawerTitle" class="fixed top-0 right-0 z-50 h-full w-full max-w-lg bg-white dark:bg-slate-900 border-l border-studio-dayBorder dark:border-studio-nightBorder shadow-2xl translate-x-full flex flex-col">
+        <div class="p-6 border-b border-studio-dayBorder dark:border-studio-nightBorder flex items-center justify-between gap-4">
+            <div>
+                <span id="drawerTag" class="font-mono text-[11px] uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-bold">DOSSIER</span>
+                <h3 id="drawerTitle" class="font-serif text-xl font-bold text-slate-900 dark:text-white mt-0.5">Title</h3>
+            </div>
+            <button type="button" onclick="closeDrawer()" aria-label="Close Drawer" class="p-2 rounded-xl border border-studio-dayBorder dark:border-studio-nightBorder hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+        <div id="drawerBody" class="p-6 overflow-y-auto space-y-5 text-sm leading-relaxed text-studio-dayMuted dark:text-studio-nightMuted flex-1">
+            <!-- Dynamically populated -->
+        </div>
+        <div class="p-4 border-t border-studio-dayBorder dark:border-studio-nightBorder bg-slate-50 dark:bg-slate-950/60 flex items-center justify-between text-xs font-mono">
+            <span>Vijay Badugu — Executive Portfolio</span>
+            <button type="button" onclick="closeDrawer()" class="px-4 py-2 rounded-xl bg-slate-900 dark:bg-indigo-600 text-white font-semibold">Close</button>
+        </div>
+    </aside>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 pointer-events-none opacity-0 translate-y-2 transition-all duration-200 bg-slate-900 dark:bg-indigo-600 text-white px-4 py-2.5 rounded-xl shadow-lg font-mono text-xs flex items-center gap-2">
+        <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 dark:text-white"></i>
+        <span id="toastText">Copied to clipboard</span>
+    </div>
+
+    <!-- ==================== APPLICATION LOGIC ==================== -->
+    <script>
+        // 1. Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 2. Theme Toggle with localStorage Persistence (Studio Daylight vs Obsidian Studio)
+        const htmlEl = document.documentElement;
+        const themeToggle = document.getElementById('themeToggle');
+        const themeLabel = document.getElementById('themeLabel');
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                htmlEl.classList.add('dark');
+                if (themeLabel) themeLabel.textContent = 'Obsidian';
+            } else {
+                htmlEl.classList.remove('dark');
+                if (themeLabel) themeLabel.textContent = 'Daylight';
+            }
+            lucide.createIcons();
+        }
+
+        const savedTheme = localStorage.getItem('vb-portfolio-theme');
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            applyTheme('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = htmlEl.classList.contains('dark');
+            const nextTheme = isDark ? 'light' : 'dark';
+            localStorage.setItem('vb-portfolio-theme', nextTheme);
+            applyTheme(nextTheme);
+        });
+
+        // 3. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // 4. CP301 Interactive Pollutant Telemetry Visualizer
+        const telemetryData = [
+            { name: 'PM2.5', reduction: 40.97, ext: '95.4 µg/m³', int: '56.3 µg/m³', p: 'p < 0.0001', color: 'bg-emerald-500' },
+            { name: 'PM10', reduction: 39.50, ext: '152.3 µg/m³', int: '92.1 µg/m³', p: 'p < 0.0001', color: 'bg-emerald-500' },
+            { name: 'H₂S', reduction: 38.50, ext: '3.9 ppm', int: '2.4 ppm', p: 'p < 0.0001', color: 'bg-indigo-500' },
+            { name: 'CO', reduction: 30.45, ext: '2.43 ppm', int: '1.69 ppm', p: 'p < 0.0001', color: 'bg-indigo-500' },
+            { name: 'NO₂', reduction: 16.90, ext: '45.5 µg/m³', int: '37.8 µg/m³', p: 'p < 0.001', color: 'bg-sky-500' },
+            { name: 'CO₂ / O₃', reduction: 6.40, ext: 'CO₂ -6.4%', int: 'O₃ +8% (Safe)', p: 'p = 0.008', color: 'bg-amber-500' }
+        ];
+
+        function switchTelemetryView(mode) {
+            const container = document.getElementById('telemetryBars');
+            const btnRed = document.getElementById('telBtnReduction');
+            const btnConc = document.getElementById('telBtnConc');
+
+            if (mode === 'reduction') {
+                btnRed.className = 'px-2.5 py-1 rounded-md bg-indigo-600 text-white font-semibold transition-colors';
+                btnConc.className = 'px-2.5 py-1 rounded-md text-slate-600 dark:text-slate-300 transition-colors';
+            } else {
+                btnConc.className = 'px-2.5 py-1 rounded-md bg-indigo-600 text-white font-semibold transition-colors';
+                btnRed.className = 'px-2.5 py-1 rounded-md text-slate-600 dark:text-slate-300 transition-colors';
+            }
+
+            container.innerHTML = telemetryData.map(item => {
+                const barWidth = Math.min(100, Math.round(item.reduction * 2.1));
+                const rightText = mode === 'reduction' 
+                    ? `-${item.reduction.toFixed(1)}% (${item.p})` 
+                    : `${item.ext} → ${item.int}`;
+                return `
+                    <div class="space-y-1">
+                        <div class="flex items-center justify-between font-mono text-[11px]">
+                            <span class="font-bold text-slate-800 dark:text-slate-100">${item.name}</span>
+                            <span class="text-slate-600 dark:text-slate-300">${rightText}</span>
+                        </div>
+                        <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                            <div class="h-full ${item.color} rounded-full transition-all duration-500" style="width: ${barWidth}%"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        switchTelemetryView('reduction');
+
+        // 5. Project & Experience Category Filtering
+        document.querySelectorAll('.project-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.project-filter-btn').forEach(b => {
+                    b.className = 'project-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold text-studio-dayMuted dark:text-studio-nightMuted hover:text-slate-900 dark:hover:text-white transition-colors';
+                });
+                btn.className = 'project-filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 text-white dark:bg-indigo-600 transition-colors';
+                const filter = btn.dataset.projectFilter;
+                document.querySelectorAll('.project-card').forEach(card => {
+                    const cats = card.dataset.category.split(' ');
+                    card.style.display = (filter === 'all' || cats.includes(filter)) ? 'flex' : 'none';
+                });
+            });
+        });
+
+        document.querySelectorAll('.exp-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.exp-filter-btn').forEach(b => {
+                    b.className = 'exp-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold text-studio-dayMuted dark:text-studio-nightMuted hover:text-slate-900 dark:hover:text-white transition-colors';
+                });
+                btn.className = 'exp-filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 text-white dark:bg-indigo-600 transition-colors';
+                const filter = btn.dataset.expFilter;
+                document.querySelectorAll('.exp-card').forEach(card => {
+                    const cats = card.dataset.expCat.split(' ');
+                    card.style.display = (filter === 'all' || cats.includes(filter)) ? 'flex' : 'none';
+                });
+            });
+        });
+
+        // 6. Slide-Over Drawer Data & Controls
+        const drawerDatabase = {
+            project: {
+                cp301: {
+                    tag: 'CP301 · DEVELOPMENT ENGINEERING PROJECT',
+                    title: 'Ionization Air Purifying Lattice',
+                    html: `
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 font-mono text-xs space-y-1">
+                            <div><strong class="text-slate-900 dark:text-white">Authors:</strong> Vijay Badugu (2022MEB1303) &amp; Aman Tadavi (2022MEB1355)</div>
+                            <div><strong class="text-slate-900 dark:text-white">Faculty Supervisor:</strong> Dr. Prabir Sarkar, Mechanical Engineering, IIT Ropar</div>
+                            <div><strong class="text-slate-900 dark:text-white">Test Site:</strong> Ground-floor room adjacent to NH-205, Rupnagar, Punjab</div>
+                        </div>
+                        <h4 class="font-bold text-slate-900 dark:text-white">Architectural &amp; High-Voltage Architecture</h4>
+                        <p>Inspired by traditional Indian <em>jali</em> ventilation screens, the prototype features a 60 cm × 120 cm seasoned pine wood frame (4×4 cm structural members treated with linseed oil and lacquer) housing 10 slats inclined at 30° with integrated 1 mm gauge stainless steel screen mesh energized by a 7–10 kV DC Flyback transformer inside an IP54-rated enclosure.</p>
+                        <h4 class="font-bold text-slate-900 dark:text-white">Dual-Station IoT Monitoring &amp; Statistical Validation</h4>
+                        <ul class="list-disc pl-5 space-y-1.5">
+                            <li><strong>Microcontrollers &amp; Sensors:</strong> Arduino Uno, MEGA 2560, and ESP8266 NodeMCU interfaced with MQ-135 (air quality), MQ-7 (CO), MICS-6814 (NO₂/NH₃), and GP2Y1014AU0F (PM2.5/PM10), preheated for 48 hours and benchmarked against CPCB Mohali data.</li>
+                            <li><strong>30-Day Results:</strong> PM2.5 reduced by <strong>40.97%</strong> (95.4 → 56.3 µg/m³, t = 11.27, p &lt; 0.0001), PM10 by <strong>39.5%</strong>, H₂S by <strong>38.5%</strong>, CO by <strong>30.45%</strong>, and NO₂ by <strong>16.9%</strong>.</li>
+                            <li><strong>Byproduct Monitoring:</strong> Tracked a minor +8% O₃ rise (32.6 → 35.2 µg/m³), remaining well below the 100 µg/m³ WHO/CPCB threshold, informing future activated-carbon hybrid upgrades.</li>
+                        </ul>
+                    `
+                },
+                cp302: {
+                    tag: 'CP302 & CP303 · CAPSTONE METALLURGY',
+                    title: 'Surface Coating & Metallurgy',
+                    html: `
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 font-mono text-xs">
+                            <strong class="text-slate-900 dark:text-white">Timeline:</strong> February – April 2026 · IIT Ropar Materials &amp; Manufacturing Lab
+                        </div>
+                        <h4 class="font-bold text-slate-900 dark:text-white">Experimental Scope</h4>
+                        <p>Investigated surface modification routes to enhance oxidation and corrosion resistance of mild steel substrates through controlled electrochemical deposition and thermochemical pack cementation.</p>
+                        <ul class="list-disc pl-5 space-y-1.5">
+                            <li><strong>Pack Cementation (Aluminizing):</strong> Prepared mild steel coupons embedded in aluminum-rich powder packs with halide activators at elevated furnace temperatures to form protective Fe-Al intermetallic diffusion layers.</li>
+                            <li><strong>Electroplating:</strong> Conducted bath preparation, substrate surface activation, and current-density controlled metallic deposition.</li>
+                            <li><strong>Metrology:</strong> Performed pre- and post-treatment precision micro-balance mass-gain measurements to evaluate coating uniformity and diffusion kinetics.</li>
+                        </ul>
+                    `
+                },
+                barrel: {
+                    tag: 'TECHNICAL RESEARCH POSTER · NOV 2025',
+                    title: 'Life Enhancement of Gun Barrel Using Surface Treatment Techniques',
+                    html: `
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 font-mono text-xs space-y-1">
+                            <div><strong class="text-slate-900 dark:text-white">Chamber Pressure Regime:</strong> 200–400 MPa (30,000–60,000 psi)</div>
+                            <div><strong class="text-slate-900 dark:text-white">Alloy Steels:</strong> AISI 4140 / 4150 Cr-Mo-V Gun Barrel Steels</div>
+                        </div>
+                        <h4 class="font-bold text-slate-900 dark:text-white">Ballistic Mechanics &amp; Stress Analysis</h4>
+                        <p>Analyzed internal ballistics and structural integrity of rifled barrels (comparing AK-47 7.62×39mm 415mm barrel and M16 5.56mm 1:7" twist rate geometries). Evaluated thin-walled hoop stress (σ_h = p·r / t) alongside thick-walled Lamé radial and tangential stress equations to prevent fatigue failure and bursting.</p>
+                        <h4 class="font-bold text-slate-900 dark:text-white">Bore Life Extension Mechanisms</h4>
+                        <ul class="list-disc pl-5 space-y-1.5">
+                            <li><strong>Hard Chrome Lining:</strong> Mitigates hot-gas erosion, thermal cracking, and propellant wear during sustained rapid-fire cycles.</li>
+                            <li><strong>Gas &amp; Plasma Nitriding:</strong> Increases surface hardness and compressive residual stresses without dimensional distortion of precision rifling lands and grooves.</li>
+                        </ul>
+                    `
+                },
+                hs506: {
+                    tag: 'HS506 · BRAIN & LANGUAGE COURSEWORK',
+                    title: 'Neurological & Emotional Mechanisms of Profanity',
+                    html: `
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 font-mono text-xs">
+                            <strong class="text-slate-900 dark:text-white">Completed:</strong> March 2026 · Humanities &amp; Social Sciences, IIT Ropar
+                        </div>
+                        <h4 class="font-bold text-slate-900 dark:text-white">Cognitive &amp; Neuro-Linguistic Investigation</h4>
+                        <p>Designed and analyzed an empirical behavioral survey examining how taboo and emotionally charged vocabulary is processed differently from propositional speech.</p>
+                        <ul class="list-disc pl-5 space-y-1.5">
+                            <li><strong>Neural Pathways:</strong> Contrasted cortical perisylvian language networks with subcortical limbic-basal ganglia circuits governing affective vocalizations.</li>
+                            <li><strong>Bilingual Emotional Resonance:</strong> Evaluated reduced autonomic emotional reactivity in L2 (English) versus L1 (native mother tongue) among multilingual university respondents.</li>
+                        </ul>
+                    `
+                },
+                screenplay: {
+                    tag: 'CREATIVE WRITING & MEDIA · OCT 2026',
+                    title: 'Vijayawada Crime-Thriller Screenplay (Tenglish Narrative)',
+                    html: `
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 font-mono text-xs">
+                            <strong class="text-slate-900 dark:text-white">Format:</strong> 15-Page Novel-Style Screenplay · Bilingual Telugu-English ("Tenglish")
+                        </div>
+                        <h4 class="font-bold text-slate-900 dark:text-white">Narrative Architecture &amp; Setting</h4>
+                        <p>Grounded in the urban geography, riverfront logistics, and local cadence of Vijayawada, Andhra Pradesh, this 15-page screenplay blends English scene direction with naturalistic Tenglish dialogue.</p>
+                        <p>Structured around tight dramatic reversals, grounded investigative tension, and distinct character voices tailored for contemporary South Indian neo-noir cinema.</p>
+                    `
+                }
+            },
+            cert: {
+                jarurat: {
+                    tag: 'VERIFIED INTERNSHIP CREDENTIAL',
+                    title: 'Certificate of Internship in Public Relations',
+                    html: `
+                        <div class="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 font-mono text-xs space-y-1.5 text-slate-800 dark:text-slate-200">
+                            <div><strong>Recipient:</strong> Vijay Badugu</div>
+                            <div><strong>Credential ID:</strong> CERT-945CB75A</div>
+                            <div><strong>Duration:</strong> 26/09/2026 to 21/11/2026 (190 Hours Completed)</div>
+                            <div><strong>Issuing Body:</strong> Jarurat Care Foundation</div>
+                            <div><strong>NITI Aayog Darpan ID:</strong> UA/2023/0370191 · <strong>CSR:</strong> CSR00066411</div>
+                            <div><strong>Signatory:</strong> Priyanka Joshi, Founder &amp; Chairperson</div>
+                        </div>
+                        <p>Awarded in recognition of completing 190 hours in the 2-month Public Relations internship program, driving digital communications, Twitter/X awareness calendars, and GI Cancer outreach initiatives.</p>
+                    `
+                },
+                dgca: {
+                    tag: 'AVIATION & UAV CREDENTIAL',
+                    title: 'DGCA Certified Drone Pilot License Training',
+                    html: `
+                        <div class="p-4 rounded-2xl bg-sky-500/10 border border-sky-500/20 font-mono text-xs space-y-1.5 text-slate-800 dark:text-slate-200">
+                            <div><strong>Trainee:</strong> Vijay Badugu</div>
+                            <div><strong>Training Partners:</strong> FlyQVision in association with IIT Bombay</div>
+                            <div><strong>Regulatory Framework:</strong> Directorate General of Civil Aviation (DGCA), India</div>
+                        </div>
+                        <p>Completed theoretical ground school, airspace regulatory compliance, pre-flight safety protocols, telemetry calibration, and practical multi-rotor UAV flight training.</p>
+                    `
+                },
+                googleai: {
+                    tag: 'ARTIFICIAL INTELLIGENCE CREDENTIAL',
+                    title: 'Google AI Agents Intensive (5-Day Capstone Program)',
+                    html: `
+                        <div class="p-4 rounded-2xl bg-violet-500/10 border border-violet-500/20 font-mono text-xs space-y-1.5 text-slate-800 dark:text-slate-200">
+                            <div><strong>Participant:</strong> Vijay Badugu</div>
+                            <div><strong>Issuers:</strong> Google &amp; Kaggle</div>
+                            <div><strong>Focus:</strong> Autonomous LLM Agents, Tool Use, Memory &amp; Evaluation</div>
+                        </div>
+                        <p>Completed the intensive 5-day engineering curriculum and capstone implementation covering agentic reasoning loops, function calling, context grounding, and multi-agent orchestration.</p>
+                    `
+                },
+                mygov: {
+                    tag: 'GOVERNMENT OF INDIA CERTIFICATE',
+                    title: 'Consumer Awareness Quiz ("Jago Grahak Jago")',
+                    html: `
+                        <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 font-mono text-xs space-y-1.5 text-slate-800 dark:text-slate-200">
+                            <div><strong>Participant:</strong> Badugu Vijay</div>
+                            <div><strong>Issuing Ministry:</strong> Department of Consumer Affairs, Ministry of Consumer Affairs, Food and Public Distribution, Government of India &amp; MyGov</div>
+                            <div><strong>Signatory:</strong> Smt. Nidhi Khare, Secretary, Department of Consumer Affairs</div>
+                        </div>
+                        <p>Recognized for successfully completing the national Consumer Awareness initiative under the Jago Grahak Jago &amp; NCH 1915 consumer protection program.</p>
+                    `
+                },
+                isp55: {
+                    tag: 'CAMPUS AMBASSADOR CREDENTIAL',
+                    title: 'ISP 55 First Trainings Contest Webinar Certificate',
+                    html: `
+                        <div class="p-4 rounded-2xl bg-blue-500/10 border border-blue-500/20 font-mono text-xs space-y-1.5 text-slate-800 dark:text-slate-200">
+                            <div><strong>Recipient:</strong> Vijay Badugu</div>
+                            <div><strong>Program:</strong> Internshala Student Partner (ISP 55)</div>
+                            <div><strong>Date of Certification:</strong> 07/01/2026</div>
+                            <div><strong>Signatory:</strong> Vice President, Marketing — Internshala</div>
+                        </div>
+                        <p>Certified for active participation in the ISP 55 First Trainings Contest Webinar organized by the Internshala Student Partner Team.</p>
+                    `
+                },
+                samsung: {
+                    tag: 'COMMUNITY & TECH RECOGNITION',
+                    title: 'Samsung Members Star Community Shortlist',
+                    html: `
+                        <div class="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 font-mono text-xs space-y-1.5 text-slate-800 dark:text-slate-200">
+                            <div><strong>Candidate:</strong> Vijay Badugu</div>
+                            <div><strong>Organization:</strong> Samsung India</div>
+                            <div><strong>Date:</strong> September 2026</div>
+                        </div>
+                        <p>Shortlisted for the Samsung Members Star Community program in recognition of consumer technology insights, digital content creation, and community leadership.</p>
+                    `
+                }
+            }
+        };
+
+        const drawer = document.getElementById('detailDrawer');
+        const backdrop = document.getElementById('drawerBackdrop');
+
+        function openDrawer(type, key) {
+            const item = drawerDatabase[type]?.[key];
+            if (!item) return;
+            document.getElementById('drawerTag').textContent = item.tag;
+            document.getElementById('drawerTitle').textContent = item.title;
+            document.getElementById('drawerBody').innerHTML = item.html;
+
+            backdrop.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                backdrop.classList.remove('opacity-0');
+                drawer.classList.remove('translate-x-full');
+            });
+        }
+
+        function closeDrawer() {
+            backdrop.classList.add('opacity-0');
+            drawer.classList.add('translate-x-full');
+            setTimeout(() => {
+                backdrop.classList.add('hidden');
+            }, 300);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeDrawer();
+        });
+
+        // 7. One-Click Clipboard Copy (iFrame-safe fallback included)
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastText').textContent = msg;
+            toast.classList.remove('opacity-0', 'translate-y-2');
+            clearTimeout(window.__toastTimer);
+            window.__toastTimer = setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+            }, 2400);
+        }
+
+        function copyEmail(email) {
+            const textarea = document.createElement('textarea');
+            textarea.value = email;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast(`Copied: ${email}`);
+            } catch (err) {
+                showToast(email);
+            }
+            document.body.removeChild(textarea);
+        }
+
+        // 8. Quick Message Composer -> Pre-filled Mailto Launcher
+        function handleDispatchSubmit(e) {
+            e.preventDefault();
+            const recipient = document.getElementById('recipientSelect').value;
+            const sender = document.getElementById('senderName').value.trim();
+            const subject = document.getElementById('messageSubject').value.trim();
+            const body = document.getElementById('messageBody').value.trim();
+
+            const fullBody = `Hello Vijay,\n\n${body}\n\nBest regards,\n${sender}`;
+            const mailtoUrl = `mailto:${encodeURIComponent(recipient)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(fullBody)}`;
+            
+            document.getElementById('dispatchFeedback').textContent = `Opening mail draft to ${recipient}...`;
+            window.location.href = mailtoUrl;
+        }
+    </script>
+</body>
+</html>

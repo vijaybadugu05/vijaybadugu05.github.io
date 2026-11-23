@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vijay Badugu Portfolio</title>
-    
-    <!-- Google Fonts: Space Grotesk, Plus Jakarta Sans, Courier Prime & JetBrains Mono -->
+
+    <!-- Google Fonts: Syne, Space Grotesk, Plus Jakarta Sans & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS via CDN -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS & Lucide Icons -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Lucide Icons via CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <script>
@@ -24,17 +22,17 @@
                     fontFamily: {
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                         display: ['"Space Grotesk"', 'sans-serif'],
+                        hero: ['"Syne"', 'sans-serif'],
                         mono: ['"JetBrains Mono"', 'monospace'],
-                        script: ['"Courier Prime"', 'monospace'],
                     },
                     colors: {
-                        lab: {
-                            bg: '#080A0F',
-                            surface: '#10141E',
-                            panel: '#151B28',
-                            border: '#232C3D',
-                            cyan: '#22D3EE',
-                            tungsten: '#F59E0B',
+                        forge: {
+                            bg: '#05070C',
+                            surface: '#0B0F19',
+                            panel: '#111726',
+                            border: '#1E293B',
+                            cyan: '#38BDF8',
+                            amber: '#F59E0B',
                             emerald: '#10B981'
                         }
                     }
@@ -44,273 +42,343 @@
     </script>
 
     <style>
-        .cad-matrix {
-            background-size: 28px 28px;
-            background-image: radial-gradient(rgba(34, 211, 238, 0.14) 1px, transparent 1px);
+        /* Architectural Blueprint Micro-Grid */
+        .blueprint-bg {
+            background-size: 40px 40px;
+            background-image:
+                linear-gradient(to right, rgba(56, 189, 248, 0.045) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(56, 189, 248, 0.045) 1px, transparent 1px);
         }
-        html:not(.dark) .cad-matrix {
-            background-image: radial-gradient(rgba(15, 23, 42, 0.12) 1px, transparent 1px);
+        html:not(.dark) .blueprint-bg {
+            background-image:
+                linear-gradient(to right, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
         }
-        .panel-hover {
-            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-                        border-color 0.25s ease,
-                        box-shadow 0.25s ease;
+
+        /* Specular Mouse-Tracking Glow Card */
+        .machined-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                        border-color 0.28s ease,
+                        box-shadow 0.28s ease;
         }
-        .panel-hover:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 16px 32px -12px rgba(34, 211, 238, 0.16);
+        .machined-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                520px circle at var(--mx, 50%) var(--my, 50%),
+                rgba(56, 189, 248, 0.11),
+                transparent 42%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
         }
-        #detailDrawer { transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1); }
+        .machined-card:hover::before {
+            opacity: 1;
+        }
+        .machined-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(56, 189, 248, 0.45);
+            box-shadow: 0 20px 40px -15px rgba(2, 132, 199, 0.22);
+        }
+
+        /* Animated Gradient Border Pill */
+        @keyframes borderFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .glow-ring {
+            background: linear-gradient(120deg, #38BDF8, #F59E0B, #10B981, #38BDF8);
+            background-size: 250% 250%;
+            animation: borderFlow 7s ease infinite;
+        }
+
+        /* Custom Range Slider */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+            cursor: pointer;
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+            height: 6px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #38BDF8 0%, #F59E0B 100%);
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 3px solid #F59E0B;
+            margin-top: -6px;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.7);
+        }
+
+        #detailDrawer { transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1); }
         #drawerBackdrop { transition: opacity 0.28s ease; }
+
         ::-webkit-scrollbar { width: 7px; height: 7px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.28); border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.28); border-radius: 9999px; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 dark:bg-lab-bg dark:text-slate-100 font-sans antialiased cad-matrix selection:bg-cyan-400/20 selection:text-cyan-300 overflow-x-hidden">
+<body class="bg-slate-50 text-slate-900 dark:bg-forge-bg dark:text-slate-100 font-sans antialiased blueprint-bg selection:bg-sky-400/25 selection:text-sky-300 overflow-x-hidden">
 
-    <!-- ==================== 1. TOP INDUSTRIAL TELEMETRY BAR ==================== -->
-    <header class="sticky top-0 z-40 bg-white/85 dark:bg-[#080A0F]/85 backdrop-blur-xl border-b border-slate-200 dark:border-lab-border">
+    <!-- ==================== INTERACTIVE 3D CAD WIREFRAME & PARTICLE CANVAS ==================== -->
+    <canvas id="cadReactorCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-85"></canvas>
+
+    <!-- ==================== 1. TOP COMMAND BAR ==================== -->
+    <header class="sticky top-0 z-40 bg-white/80 dark:bg-[#05070C]/80 backdrop-blur-2xl border-b border-slate-200 dark:border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
             
             <a href="#top" class="flex items-center gap-3 group min-w-0">
-                <div class="w-9 h-9 rounded-lg bg-cyan-400/10 border border-cyan-400/40 flex items-center justify-center shrink-0 group-hover:bg-cyan-400/20 transition-colors">
-                    <span class="font-mono text-xs font-extrabold text-cyan-500 dark:text-cyan-400">VB</span>
+                <div class="p-[1.5px] rounded-xl glow-ring shrink-0">
+                    <div class="w-9 h-9 rounded-[10px] bg-slate-950 flex items-center justify-center">
+                        <span class="font-mono text-xs font-extrabold text-sky-400">VB</span>
+                    </div>
                 </div>
                 <div class="min-w-0">
                     <span class="font-display font-bold text-sm sm:text-base tracking-tight block truncate text-slate-900 dark:text-white">
                         Vijay Badugu Portfolio
                     </span>
                     <span class="font-mono text-[10px] text-slate-500 dark:text-slate-400 block truncate">
-                        IIT ROPAR · 2022MEB1303
+                        IIT ROPAR // 2022MEB1303
                     </span>
                 </div>
             </a>
 
-            <nav aria-label="Primary Sections" class="hidden lg:flex items-center gap-1 font-mono text-xs">
-                <a href="#engineering" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-lab-panel transition-colors">01. ENGINEERING</a>
-                <a href="#research" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-lab-panel transition-colors">02. RESEARCH</a>
-                <a href="#writing" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-amber-400 hover:bg-slate-100 dark:hover:bg-lab-panel transition-colors">03. WRITING</a>
-                <a href="#experience" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-lab-panel transition-colors">04. EXPERIENCE</a>
-                <a href="#credentials" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-lab-panel transition-colors">05. CREDENTIALS</a>
-                <a href="#contact" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-lab-panel transition-colors">06. CONTACT</a>
+            <nav aria-label="Primary Navigation" class="hidden lg:flex items-center gap-1 font-mono text-xs">
+                <a href="#engineering" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">01. ENGINEERING</a>
+                <a href="#research" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">02. RESEARCH</a>
+                <a href="#writing" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-amber-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">03. SCREENPLAY</a>
+                <a href="#experience" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">04. EXPERIENCE</a>
+                <a href="#credentials" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">05. CREDENTIALS</a>
+                <a href="#contact" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">06. DISPATCH</a>
             </nav>
 
             <div class="flex items-center gap-2.5 shrink-0">
-                <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/30 font-mono text-[11px] font-semibold text-emerald-500 dark:text-emerald-400">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    2027 GRAD
-                </span>
-                <button id="themeToggle" type="button" aria-label="Toggle Theme" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-lab-border bg-slate-100 dark:bg-lab-panel font-mono text-xs font-semibold hover:border-cyan-400/50 transition-colors">
+                <div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 font-mono text-[11px] font-bold text-emerald-500 dark:text-emerald-400">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>BATCH 2027</span>
+                </div>
+                <button id="themeToggle" type="button" aria-label="Toggle Theme" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 font-mono text-xs font-semibold hover:border-sky-400/60 transition-colors">
                     <i data-lucide="sun" class="w-3.5 h-3.5 hidden dark:inline text-amber-400"></i>
                     <i data-lucide="moon" class="w-3.5 h-3.5 inline dark:hidden text-slate-700"></i>
-                    <span id="themeText" class="hidden sm:inline">Thermal</span>
+                    <span id="themeText" class="hidden sm:inline">Forge</span>
                 </button>
-                <button id="mobileMenuBtn" type="button" aria-label="Open Menu" class="lg:hidden p-2 rounded-lg border border-slate-200 dark:border-lab-border bg-slate-100 dark:bg-lab-panel">
+                <button id="mobileMenuBtn" type="button" aria-label="Open Menu" class="lg:hidden p-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900">
                     <i data-lucide="menu" class="w-4 h-4"></i>
                 </button>
             </div>
         </div>
 
-        <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 dark:border-lab-border bg-white dark:bg-lab-surface px-4 py-3">
+        <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0B0F19] px-4 py-3">
             <div class="grid grid-cols-2 gap-1.5 font-mono text-xs">
-                <a href="#engineering" class="mobile-link px-3 py-2 rounded-lg hover:bg-lab-panel">01. ENGINEERING</a>
-                <a href="#research" class="mobile-link px-3 py-2 rounded-lg hover:bg-lab-panel">02. RESEARCH</a>
-                <a href="#writing" class="mobile-link px-3 py-2 rounded-lg hover:bg-lab-panel">03. WRITING</a>
-                <a href="#experience" class="mobile-link px-3 py-2 rounded-lg hover:bg-lab-panel">04. EXPERIENCE</a>
-                <a href="#credentials" class="mobile-link px-3 py-2 rounded-lg hover:bg-lab-panel">05. CREDENTIALS</a>
-                <a href="#contact" class="mobile-link px-3 py-2 rounded-lg bg-cyan-500 text-slate-950 font-bold text-center">06. CONTACT</a>
+                <a href="#engineering" class="mobile-link px-3 py-2 rounded-lg hover:bg-slate-900">01. ENGINEERING</a>
+                <a href="#research" class="mobile-link px-3 py-2 rounded-lg hover:bg-slate-900">02. RESEARCH</a>
+                <a href="#writing" class="mobile-link px-3 py-2 rounded-lg hover:bg-slate-900">03. SCREENPLAY</a>
+                <a href="#experience" class="mobile-link px-3 py-2 rounded-lg hover:bg-slate-900">04. EXPERIENCE</a>
+                <a href="#credentials" class="mobile-link px-3 py-2 rounded-lg hover:bg-slate-900">05. CREDENTIALS</a>
+                <a href="#contact" class="mobile-link px-3 py-2 rounded-lg bg-sky-400 text-slate-950 font-extrabold text-center">06. DISPATCH</a>
             </div>
         </div>
     </header>
 
     <!-- ==================== MAIN CONTAINER ==================== -->
-    <main id="top" class="max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-24 space-y-20">
+    <main id="top" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-24 space-y-24">
 
-        <!-- ==================== HERO SECTION: IDENTITY + PROFILE PORTRAIT & LAB CONSOLE ==================== -->
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- ==================== HERO: 3D CAD WORKSTATION & LIVE THERMAL SIMULATOR ==================== -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             
-            <!-- Left 6 Columns: Mechanical Engineer Identity -->
-            <div class="lg:col-span-6 space-y-6">
-                <div class="inline-flex flex-wrap items-center gap-2">
-                    <span class="px-3 py-1 rounded-md bg-cyan-400/10 border border-cyan-400/30 font-mono text-xs font-bold tracking-wider uppercase text-cyan-600 dark:text-cyan-400">
-                        MECHANICAL ENGINEER
-                    </span>
-                    <span class="px-3 py-1 rounded-md bg-slate-200/70 dark:bg-lab-panel font-mono text-xs text-slate-600 dark:text-slate-300">
-                        IIT Ropar · Batch of 2027
-                    </span>
-                </div>
+            <!-- Left 6 Columns: High-Impact Engineering Identity -->
+            <div class="lg:col-span-6 flex flex-col justify-between space-y-7">
+                <div class="space-y-5">
+                    <div class="inline-flex flex-wrap items-center gap-2">
+                        <span class="px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-sky-500/20 to-amber-500/20 border border-sky-400/40 font-mono text-xs font-extrabold tracking-widest uppercase text-sky-600 dark:text-sky-300 shadow-sm">
+                            MECHANICAL ENGINEER
+                        </span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-200/80 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 font-mono text-xs text-slate-600 dark:text-slate-300">
+                            IIT Ropar · 2022–2027
+                        </span>
+                    </div>
 
-                <div class="space-y-3">
-                    <h1 class="font-display text-4xl sm:text-6xl font-bold tracking-tight leading-[1.06] text-slate-900 dark:text-white">
-                        Vijay Badugu
+                    <h1 class="font-hero text-4xl sm:text-6xl lg:text-[64px] font-extrabold tracking-tight leading-[1.02] text-slate-900 dark:text-white">
+                        Vijay<br>
+                        <span class="bg-gradient-to-r from-sky-400 via-cyan-300 to-amber-400 bg-clip-text text-transparent">
+                            Badugu
+                        </span>
                     </h1>
-                    <p class="font-mono text-xs sm:text-sm text-amber-600 dark:text-amber-400 font-semibold">
-                        Surface Metallurgy · Thermal Barrier Coatings · IoT Air Systems · Screenwriting
+
+                    <div class="font-mono text-xs sm:text-sm text-amber-500 dark:text-amber-400 font-semibold flex items-center gap-2">
+                        <i data-lucide="cpu" class="w-4 h-4 shrink-0"></i>
+                        <span id="liveFocusTicker">Surface Metallurgy · Duplex Ni/β-NiAl Coatings</span>
+                    </div>
+
+                    <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl">
+                        Final-year B.Tech Mechanical Engineering undergraduate at the <strong class="text-slate-900 dark:text-white">Indian Institute of Technology (IIT) Ropar</strong> (<span class="font-mono text-xs text-sky-400">2022MEB1303</span>). Specializing in high-temperature surface engineering, 7–10 kV electrostatic IoT air purification prototypes, heavy industrial workflows at BHEL, and regional crime-thriller screenwriting.
                     </p>
                 </div>
 
-                <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Final-year B.Tech Mechanical Engineering undergraduate at the <strong class="text-slate-900 dark:text-white">Indian Institute of Technology (IIT) Ropar</strong> (<span class="font-mono text-xs text-cyan-500">2022MEB1303</span>). Engineering high-temperature duplex Ni/&beta;-NiAl coatings for gun barrel bore life extension, building 7–10 kV IoT-monitored air purification lattices, and writing regional crime-thriller fiction.
-                </p>
+                <!-- Action Buttons + Instant Copy Inboxes -->
+                <div class="space-y-4">
+                    <div class="flex flex-wrap items-center gap-3">
+                        <a href="#engineering" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-sky-400 to-cyan-300 hover:brightness-110 text-slate-950 font-mono text-xs font-extrabold uppercase tracking-wider shadow-lg shadow-sky-500/25 transition-all">
+                            <span>LAUNCH PROJECT ARCHIVE</span>
+                            <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#contact" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-amber-400 font-mono text-xs font-bold uppercase tracking-wider transition-colors">
+                            <i data-lucide="terminal" class="w-4 h-4 text-amber-400"></i>
+                            <span>DIRECT CONTACT</span>
+                        </a>
+                    </div>
 
-                <!-- Action Row -->
-                <div class="flex flex-wrap items-center gap-2.5 pt-1">
-                    <a href="#engineering" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-mono text-xs font-extrabold uppercase tracking-wider shadow-lg shadow-cyan-500/20 transition-all">
-                        <span>INSPECT LAB WORK</span>
-                        <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
-                    </a>
-                    <button type="button" onclick="copyEmail('2022meb1303@iitrpr.ac.in')" class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-white dark:bg-lab-panel border border-slate-200 dark:border-lab-border hover:border-cyan-400/50 font-mono text-xs transition-colors">
-                        <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-cyan-400"></i>
-                        <span>2022meb1303@iitrpr.ac.in</span>
-                        <i data-lucide="copy" class="w-3 h-3 opacity-60"></i>
-                    </button>
-                    <button type="button" onclick="copyEmail('vijay.badugu05@gmail.com')" class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-white dark:bg-lab-panel border border-slate-200 dark:border-lab-border hover:border-amber-400/50 font-mono text-xs transition-colors">
-                        <i data-lucide="mail" class="w-3.5 h-3.5 text-amber-400"></i>
-                        <span>vijay.badugu05@gmail.com</span>
-                        <i data-lucide="copy" class="w-3 h-3 opacity-60"></i>
-                    </button>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button type="button" onclick="copyEmail('2022meb1303@iitrpr.ac.in')" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-sky-400 font-mono text-xs transition-colors">
+                            <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-sky-400"></i>
+                            <span>2022meb1303@iitrpr.ac.in</span>
+                            <i data-lucide="copy" class="w-3 h-3 opacity-60"></i>
+                        </button>
+                        <button type="button" onclick="copyEmail('vijay.badugu05@gmail.com')" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-amber-400 font-mono text-xs transition-colors">
+                            <i data-lucide="mail" class="w-3.5 h-3.5 text-amber-400"></i>
+                            <span>vijay.badugu05@gmail.com</span>
+                            <i data-lucide="copy" class="w-3 h-3 opacity-60"></i>
+                        </button>
+                    </div>
                 </div>
 
-                <!-- 3 Core Telemetry KPI Strip -->
-                <div class="grid grid-cols-3 gap-3 pt-2">
-                    <div class="p-3.5 rounded-2xl bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border">
-                        <span class="font-mono text-[10px] uppercase text-slate-400 block">DUPLEX COATING</span>
-                        <span class="font-display text-lg sm:text-xl font-bold text-amber-400 mt-0.5 block">~1000 °C</span>
+                <!-- 3 Telemetry Readout Tiles -->
+                <div class="grid grid-cols-3 gap-3">
+                    <div class="machined-card p-3.5 rounded-2xl bg-white/90 dark:bg-[#0B0F19]/90 border border-slate-200 dark:border-slate-800">
+                        <span class="font-mono text-[10px] uppercase text-slate-400 block">HTLA SYNTHESIS</span>
+                        <span class="font-display text-lg sm:text-2xl font-bold text-amber-400 mt-0.5 block">~1000 °C</span>
                         <span class="font-mono text-[10px] text-slate-500">β-NiAl &amp; γ'-Ni₃Al</span>
                     </div>
-                    <div class="p-3.5 rounded-2xl bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border">
-                        <span class="font-mono text-[10px] uppercase text-slate-400 block">AIR LATTICE</span>
-                        <span class="font-display text-lg sm:text-xl font-bold text-emerald-400 mt-0.5 block">-40.97%</span>
-                        <span class="font-mono text-[10px] text-slate-500">PM2.5 (30d Trial)</span>
+                    <div class="machined-card p-3.5 rounded-2xl bg-white/90 dark:bg-[#0B0F19]/90 border border-slate-200 dark:border-slate-800">
+                        <span class="font-mono text-[10px] uppercase text-slate-400 block">IOT LATTICE</span>
+                        <span class="font-display text-lg sm:text-2xl font-bold text-emerald-400 mt-0.5 block">-40.97%</span>
+                        <span class="font-mono text-[10px] text-slate-500">PM2.5 Reduction</span>
                     </div>
-                    <div class="p-3.5 rounded-2xl bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border">
-                        <span class="font-mono text-[10px] uppercase text-slate-400 block">ATHLETICS</span>
-                        <span class="font-display text-lg sm:text-xl font-bold text-cyan-400 mt-0.5 block">BRONZE</span>
-                        <span class="font-mono text-[10px] text-slate-500">Inter-IIT Cricket</span>
+                    <div class="machined-card p-3.5 rounded-2xl bg-white/90 dark:bg-[#0B0F19]/90 border border-slate-200 dark:border-slate-800">
+                        <span class="font-mono text-[10px] uppercase text-slate-400 block">INTER-IIT</span>
+                        <span class="font-display text-lg sm:text-2xl font-bold text-sky-400 mt-0.5 block">BRONZE</span>
+                        <span class="font-mono text-[10px] text-slate-500">Cricket (IYSC)</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Right 6 Columns: Profile Picture Card + Interactive Lab Workbench -->
-            <div class="lg:col-span-6 space-y-4">
+            <!-- Right 6 Columns: Profile Portrait Card + Interactive Thermal & Ballistic Simulator -->
+            <div class="lg:col-span-6 flex flex-col justify-between space-y-4">
                 
-                <!-- Framed Profile Portrait Strip -->
-                <div class="bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border rounded-3xl p-4 sm:p-5 shadow-xl flex items-center gap-4 sm:gap-5">
-                    <div class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-cyan-400/50 bg-slate-900 shrink-0 flex items-center justify-center">
-                        <img src="profile.jpg" alt="Vijay Badugu" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-full h-full object-cover object-top">
-                        <div style="display:none;" class="w-full h-full flex-col items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950 text-cyan-400 font-mono">
-                            <span class="text-lg font-extrabold">VB</span>
-                            <span class="text-[9px] text-slate-400">2022MEB1303</span>
+                <!-- Machined Profile Portrait Frame -->
+                <div class="p-[1.5px] rounded-3xl glow-ring shadow-2xl">
+                    <div class="bg-white dark:bg-[#0B0F19] rounded-[22px] p-4 sm:p-5 flex items-center gap-4 sm:gap-5">
+                        <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-2 border-sky-400/60 bg-slate-900 shrink-0 shadow-lg">
+                            <img src="profile.jpg" alt="Vijay Badugu" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-full h-full object-cover object-top">
+                            <div style="display:none;" class="w-full h-full flex-col items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950 text-sky-400 font-mono">
+                                <span class="text-xl font-extrabold">VB</span>
+                                <span class="text-[9px] text-slate-400">2022MEB1303</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="min-w-0 flex-1 space-y-1">
-                        <div class="flex flex-wrap items-center justify-between gap-2">
-                            <span class="font-mono text-[10px] uppercase tracking-wider text-cyan-500 dark:text-cyan-400 font-bold">PROFILE DOSSIER</span>
-                            <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-mono text-[10px] font-semibold">IIT ROPAR</span>
+                        <div class="min-w-0 flex-1 space-y-1.5">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <span class="font-mono text-[10px] uppercase tracking-widest text-sky-400 font-bold">ENGINEER IDENTITY // VERIFIED</span>
+                                <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-mono text-[10px] font-bold">IIT ROPAR</span>
+                            </div>
+                            <h2 class="font-display font-bold text-lg sm:text-xl text-slate-900 dark:text-white truncate">Vijay Badugu</h2>
+                            <p class="font-mono text-xs text-slate-500 dark:text-slate-400">B.Tech Mechanical Engineering · Roll No: 2022MEB1303</p>
+                            <div class="flex flex-wrap gap-1.5 pt-0.5 font-mono text-[10px]">
+                                <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">Rupnagar, PB</span>
+                                <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">Vijayawada, AP</span>
+                                <span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-400 font-semibold">DGCA UAV Trainee</span>
+                            </div>
                         </div>
-                        <h2 class="font-display font-bold text-base sm:text-lg text-slate-900 dark:text-white truncate">Vijay Badugu</h2>
-                        <p class="font-mono text-xs text-slate-500 dark:text-slate-400 truncate">B.Tech Mechanical Engineering · Vijayawada / Rupnagar</p>
                     </div>
                 </div>
 
-                <!-- Interactive Lab Console -->
-                <div class="bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border rounded-3xl overflow-hidden shadow-2xl">
-                    <div class="px-4 py-3 bg-slate-100 dark:bg-lab-panel border-b border-slate-200 dark:border-lab-border flex flex-wrap items-center justify-between gap-2">
-                        <div class="flex items-center gap-1.5 font-mono text-[11px]">
-                            <button type="button" onclick="switchWorkbench('coating')" id="wbTabCoating" class="px-3 py-1 rounded-lg bg-cyan-500 text-slate-950 font-bold transition-colors">THERMAL COATING SIM</button>
-                            <button type="button" onclick="switchWorkbench('lattice')" id="wbTabLattice" class="px-3 py-1 rounded-lg text-slate-500 dark:text-slate-300 hover:text-cyan-400 transition-colors">JALI AIRFLOW LATTICE</button>
+                <!-- Interactive Thermal & Ballistic Bore Simulator (CP302 / CP303) -->
+                <div class="machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-6 shadow-2xl space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+                        <div>
+                            <span class="font-mono text-[10px] uppercase tracking-widest text-amber-400 font-bold">INTERACTIVE LAB SIMULATOR // CP302–CP303</span>
+                            <h3 class="font-display font-bold text-base sm:text-lg text-slate-900 dark:text-white">Gun Barrel Duplex Coating &amp; Thermal Stress</h3>
                         </div>
-                        <span class="font-mono text-[10px] text-slate-400">SYS_MODE // CAD</span>
+                        <button type="button" onclick="openDrawer('project', 'cp302')" class="font-mono text-xs font-bold text-sky-400 hover:underline">XRD REPORT &gt;</button>
                     </div>
 
-                    <!-- VIEW 1: Duplex Coating Thermal Cross-Section Inspector -->
-                    <div id="wbViewCoating" class="p-5 sm:p-6 space-y-4">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <span class="font-mono text-[10px] uppercase tracking-wider text-amber-400 font-bold">CP302 / CP303 METALLURGY</span>
-                                <h3 class="font-display font-bold text-base sm:text-lg text-slate-900 dark:text-white">Duplex Ni / β-NiAl Diffusion Architecture</h3>
+                    <!-- Live Temperature & Chamber Stress Slider -->
+                    <div class="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-950/90 border border-slate-200 dark:border-slate-800 space-y-2.5">
+                        <div class="flex items-center justify-between font-mono text-xs">
+                            <span class="text-slate-500 dark:text-slate-400">SIMULATED BORE / FURNACE TEMP:</span>
+                            <span id="simTempDisplay" class="font-extrabold text-amber-400 text-sm">1000 °C (HTLA Regime)</span>
+                        </div>
+                        <input id="thermalSlider" type="range" min="400" max="1100" step="50" value="1000" oninput="updateThermalSim(this.value)" class="w-full">
+                        <div class="grid grid-cols-3 gap-2 pt-1 font-mono text-[11px]">
+                            <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                                <span class="text-[9px] text-slate-400 block">ACTIVE PHASE</span>
+                                <span id="simPhase" class="font-bold text-sky-400">β-NiAl + γ'-Ni₃Al</span>
                             </div>
-                            <button type="button" onclick="openDrawer('project', 'cp302')" class="font-mono text-xs text-cyan-400 hover:underline font-bold">FULL REPORT &gt;</button>
-                        </div>
-
-                        <div class="space-y-2 font-mono text-xs">
-                            <button type="button" onclick="inspectLayer('beta')" class="w-full text-left p-3 rounded-xl bg-amber-500/15 border border-amber-500/40 hover:bg-amber-500/25 transition-colors flex items-center justify-between">
-                                <span class="font-bold text-amber-400">LAYER 01 // Outer β-NiAl Aluminide Zone</span>
-                                <span class="text-[11px] text-slate-300">~1000 °C HTLA</span>
-                            </button>
-                            <button type="button" onclick="inspectLayer('gamma')" class="w-full text-left p-2.5 rounded-xl bg-cyan-500/15 border border-cyan-500/40 hover:bg-cyan-500/25 transition-colors flex items-center justify-between">
-                                <span class="font-bold text-cyan-400">LAYER 02 // Intermediate γ'-Ni₃Al Sublayer</span>
-                                <span class="text-[11px] text-slate-300">Al Reservoir</span>
-                            </button>
-                            <button type="button" onclick="inspectLayer('nickel')" class="w-full text-left p-2.5 rounded-xl bg-indigo-500/15 border border-indigo-500/40 hover:bg-indigo-500/25 transition-colors flex items-center justify-between">
-                                <span class="font-bold text-indigo-400">LAYER 03 // Watts-Bath Ni Interlayer</span>
-                                <span class="text-[11px] text-slate-300">50–80 μm Barrier</span>
-                            </button>
-                            <button type="button" onclick="inspectLayer('steel')" class="w-full text-left p-3 rounded-xl bg-slate-800/90 border border-slate-700 hover:border-slate-500 transition-colors flex items-center justify-between">
-                                <span class="font-bold text-slate-200">SUBSTRATE // Mild Steel Bore Coupon</span>
-                                <span class="text-[11px] text-slate-400">128.67 HV 0.5</span>
-                            </button>
-                        </div>
-
-                        <div id="layerReadout" class="p-3.5 rounded-xl bg-slate-100 dark:bg-[#080A0F] border border-slate-200 dark:border-lab-border font-mono text-xs text-slate-600 dark:text-slate-300">
-                            Click any metallurgical layer above to inspect XRD phase identification and thermal barrier properties.
-                        </div>
-                    </div>
-
-                    <!-- VIEW 2: CP301 Ionization Air Purifying Lattice -->
-                    <div id="wbViewLattice" class="hidden p-5 sm:p-6 space-y-4">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <span class="font-mono text-[10px] uppercase tracking-wider text-emerald-400 font-bold">CP301 HARDWARE PROTOTYPE</span>
-                                <h3 class="font-display font-bold text-base sm:text-lg text-slate-900 dark:text-white">7–10 kV Electrostatic Jali Window</h3>
+                            <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                                <span class="text-[9px] text-slate-400 block">OXIDE BARRIER</span>
+                                <span id="simOxide" class="font-bold text-emerald-400">Dense α-Al₂O₃</span>
                             </div>
-                            <button type="button" onclick="openDrawer('project', 'cp301')" class="font-mono text-xs text-cyan-400 hover:underline font-bold">FULL SPECS &gt;</button>
+                            <div class="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                                <span class="text-[9px] text-slate-400 block">BARREL LIFE GAIN</span>
+                                <span id="simLife" class="font-bold text-amber-400">~5.0× Baseline</span>
+                            </div>
                         </div>
-                        <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800">
-                            <svg class="w-full h-40" viewBox="0 0 360 140" fill="none">
-                                <rect x="145" y="12" width="16" height="116" rx="2" fill="#1E293B" stroke="#22D3EE" stroke-width="1.5"/>
-                                <line x1="153" y1="18" x2="153" y2="122" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="4 3"/>
-                                <path d="M20 35 H135" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="3 3"/>
-                                <path d="M20 70 H135" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="3 3"/>
-                                <path d="M20 105 H135" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="3 3"/>
-                                <circle cx="75" cy="35" r="4" fill="#EF4444"/>
-                                <circle cx="105" cy="70" r="4.5" fill="#EF4444"/>
-                                <circle cx="60" cy="105" r="3.5" fill="#EF4444"/>
-                                <path d="M170 35 H330" stroke="#10B981" stroke-width="2"/>
-                                <path d="M170 70 H330" stroke="#10B981" stroke-width="2"/>
-                                <path d="M170 105 H330" stroke="#10B981" stroke-width="2"/>
-                                <text x="20" y="22" fill="#94A3B8" font-family="JetBrains Mono" font-size="9">NH-205 Ambient Intake</text>
-                                <text x="175" y="22" fill="#10B981" font-family="JetBrains Mono" font-size="9">Clean Air (-40.97% PM2.5)</text>
-                                <text x="115" y="136" fill="#22D3EE" font-family="JetBrains Mono" font-size="8.5">7-10 kV SS Mesh</text>
-                            </svg>
-                        </div>
-                        <p class="font-mono text-xs text-slate-500 dark:text-slate-400">
-                            Dual Arduino Uno + ESP8266 NodeMCU telemetry stations validated significant reductions across PM2.5, PM10, H₂S, CO, and NO₂ (p &lt; 0.001).
-                        </p>
                     </div>
+
+                    <!-- 4-Layer Interactive Stack -->
+                    <div class="grid grid-cols-2 gap-2 font-mono text-[11px]">
+                        <button type="button" onclick="inspectLayer('beta')" class="p-2.5 rounded-xl bg-amber-500/15 border border-amber-500/40 hover:bg-amber-500/25 text-left transition-colors">
+                            <span class="font-bold text-amber-400 block">01 // β-NiAl Outer</span>
+                            <span class="text-[10px] text-slate-400">Aluminide Oxidation Shield</span>
+                        </button>
+                        <button type="button" onclick="inspectLayer('gamma')" class="p-2.5 rounded-xl bg-sky-500/15 border border-sky-500/40 hover:bg-sky-500/25 text-left transition-colors">
+                            <span class="font-bold text-sky-400 block">02 // γ'-Ni₃Al Zone</span>
+                            <span class="text-[10px] text-slate-400">Secondary Al Reservoir</span>
+                        </button>
+                        <button type="button" onclick="inspectLayer('nickel')" class="p-2.5 rounded-xl bg-indigo-500/15 border border-indigo-500/40 hover:bg-indigo-500/25 text-left transition-colors">
+                            <span class="font-bold text-indigo-400 block">03 // Ni Interlayer</span>
+                            <span class="text-[10px] text-slate-400">50–80 μm Diffusion Barrier</span>
+                        </button>
+                        <button type="button" onclick="inspectLayer('steel')" class="p-2.5 rounded-xl bg-slate-800/90 border border-slate-700 hover:border-slate-500 text-left transition-colors">
+                            <span class="font-bold text-slate-200 block">04 // Steel Substrate</span>
+                            <span class="text-[10px] text-slate-400">128.67 HV 0.5 Baseline</span>
+                        </button>
+                    </div>
+                    <p id="layerReadout" class="font-mono text-[11px] text-slate-500 dark:text-slate-400">
+                        Select any layer above to inspect XRD &amp; microhardness telemetry.
+                    </p>
                 </div>
 
             </div>
         </section>
 
-        <!-- ==================== 01 // MECHANICAL ENGINEERING PROJECTS ==================== -->
+        <!-- ==================== 01 // MECHANICAL & METALLURGICAL ENGINEERING ==================== -->
         <section id="engineering" class="scroll-mt-24 space-y-6">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-lab-border pb-4">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-4">
                 <div>
-                    <span class="font-mono text-xs font-bold uppercase tracking-widest text-cyan-500">01 // MECHANICAL &amp; METALLURGICAL ENGINEERING</span>
-                    <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-1">Capstone &amp; Hardware Systems</h2>
+                    <span class="font-mono text-xs font-bold uppercase tracking-widest text-sky-400">01 // MECHANICAL &amp; METALLURGICAL ENGINEERING</span>
+                    <h2 class="font-display text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mt-1">Capstone &amp; Hardware Systems</h2>
                 </div>
-                <span class="font-mono text-xs text-slate-400">IIT Ropar · Department of Mechanical Engineering</span>
+                <span class="font-mono text-xs text-slate-400">Department of Mechanical Engineering, IIT Ropar</span>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 
-                <!-- Card 1: CP302 & CP303 -->
-                <article class="lg:col-span-6 panel-hover bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border rounded-3xl p-6 sm:p-7 flex flex-col justify-between space-y-5">
+                <!-- CP302 & CP303 -->
+                <article class="lg:col-span-6 machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 flex flex-col justify-between space-y-5">
                     <div class="space-y-4">
                         <div class="flex flex-wrap items-center justify-between gap-2">
-                            <span class="px-3 py-1 rounded-md bg-amber-500/15 border border-amber-500/30 font-mono text-xs font-bold text-amber-500 dark:text-amber-400">CAPSTONE I &amp; II · CP302 / CP303</span>
+                            <span class="px-3 py-1 rounded-lg bg-amber-500/15 border border-amber-500/30 font-mono text-xs font-bold text-amber-400">CAPSTONE I &amp; II · CP302 / CP303</span>
                             <span class="font-mono text-xs text-slate-400">AY 2025–26</span>
                         </div>
 
@@ -318,28 +386,28 @@
                             Life Enhancement of Gun Barrel Using Surface Treatment Techniques
                         </h3>
 
-                        <div class="p-3.5 rounded-xl bg-slate-100 dark:bg-lab-panel border-l-4 border-amber-400 font-mono text-xs space-y-1">
+                        <div class="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-900/90 border-l-4 border-amber-400 font-mono text-xs space-y-1">
                             <div><strong class="text-slate-900 dark:text-white">Supervised by:</strong> Dr. Harpreet Singh (Dept. of Mechanical Engineering) &amp; Dr. Pratik K. Ray (Dept. of Metallurgical &amp; Materials Engineering), IIT Ropar</div>
                         </div>
 
                         <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-300 list-disc pl-5">
                             <li><strong>Phase I — Watts-Bath Ni Electroplating (CP302):</strong> Established mild steel baseline hardness (128.67 HV 0.5) and optimized low-voltage deposition (1 V, 0.016 A, ~0.051 mg/min) for 50–80 μm diffusion barriers.</li>
-                            <li><strong>Phase II — Pack Cementation Aluminizing (CP303):</strong> Conducted HTLA aluminizing at ~1000 °C (4–6 hrs, 15/81/4 wt.% Al/Al₂O₃/NH₄Cl) on rectangular and hollow cylindrical coupons.</li>
-                            <li><strong>Phase &amp; Geometry Validation:</strong> Confirmed protective β-NiAl and γ'-Ni₃Al intermetallic formation via Cu-Kα XRD and superior uniformity on cylindrical geometries.</li>
+                            <li><strong>Phase II — Pack Cementation Aluminizing (CP303):</strong> Conducted HTLA aluminizing at ~1000 °C (4–6 hrs, 15/81/4 wt.% Al/Al₂O₃/NH₄Cl) on rectangular and hollow cylindrical specimens.</li>
+                            <li><strong>Phase &amp; Geometry Validation:</strong> Confirmed protective β-NiAl and γ'-Ni₃Al intermetallic formation via Cu-Kα XRD and demonstrated superior uniformity on cylindrical bore geometries.</li>
                         </ul>
                     </div>
 
-                    <div class="pt-4 border-t border-slate-200 dark:border-lab-border flex items-center justify-between font-mono text-xs">
+                    <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between font-mono text-xs">
                         <span class="text-slate-400">XRD · Vickers HV · HTLA ~1000 °C</span>
-                        <button type="button" onclick="openDrawer('project', 'cp302')" class="font-bold text-amber-400 hover:underline">OPEN DOSSIER &gt;</button>
+                        <button type="button" onclick="openDrawer('project', 'cp302')" class="font-bold text-amber-400 hover:underline">INSPECT DOSSIER &gt;</button>
                     </div>
                 </article>
 
-                <!-- Card 2: CP301 -->
-                <article class="lg:col-span-6 panel-hover bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border rounded-3xl p-6 sm:p-7 flex flex-col justify-between space-y-5">
+                <!-- CP301 -->
+                <article class="lg:col-span-6 machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 flex flex-col justify-between space-y-5">
                     <div class="space-y-4">
                         <div class="flex flex-wrap items-center justify-between gap-2">
-                            <span class="px-3 py-1 rounded-md bg-cyan-500/15 border border-cyan-500/30 font-mono text-xs font-bold text-cyan-500 dark:text-cyan-400">DESIGN PROJECT · CP301</span>
+                            <span class="px-3 py-1 rounded-lg bg-sky-500/15 border border-sky-500/30 font-mono text-xs font-bold text-sky-400">DESIGN PROJECT · CP301</span>
                             <span class="font-mono text-xs text-slate-400">Guide: Dr. Prabir Sarkar</span>
                         </div>
 
@@ -348,24 +416,24 @@
                         </h3>
 
                         <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                            Co-engineered with Aman Tadavi (2022MEB1355): a 60×120 cm seasoned pine wood <em>jali</em> window frame with 30° inclined slats and stainless steel mesh powered by a 7–10 kV DC Flyback transformer, logged every 2 minutes over 30 days via Arduino + ESP8266 stations.
+                            Co-engineered with Aman Tadavi (2022MEB1355): a 60×120 cm seasoned pine wood <em>jali</em> window frame with 30° inclined slats and stainless steel mesh powered by a 7–10 kV DC Flyback transformer, logged every 2 minutes over 30 days via dual Arduino + ESP8266 stations.
                         </p>
 
-                        <div class="p-4 rounded-2xl bg-slate-100 dark:bg-lab-panel border border-slate-200 dark:border-lab-border space-y-3">
+                        <div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-950/90 border border-slate-200 dark:border-slate-800 space-y-3">
                             <div class="flex items-center justify-between font-mono text-xs">
-                                <span class="font-bold text-cyan-400">30-DAY FIELD TELEMETRY</span>
-                                <div class="inline-flex rounded-lg bg-white dark:bg-lab-bg p-0.5 border border-slate-200 dark:border-lab-border text-[11px]">
-                                    <button type="button" onclick="switchTelemetryView('reduction')" id="telBtnReduction" class="px-2 py-0.5 rounded bg-cyan-500 text-slate-950 font-bold">% Drop</button>
-                                    <button type="button" onclick="switchTelemetryView('concentration')" id="telBtnConc" class="px-2 py-0.5 rounded text-slate-400">Ext→Int</button>
+                                <span class="font-bold text-sky-400">30-DAY FIELD TELEMETRY</span>
+                                <div class="inline-flex rounded-lg bg-white dark:bg-slate-900 p-0.5 border border-slate-200 dark:border-slate-800 text-[11px]">
+                                    <button type="button" onclick="switchTelemetryView('reduction')" id="telBtnReduction" class="px-2.5 py-0.5 rounded bg-sky-400 text-slate-950 font-extrabold">% Drop</button>
+                                    <button type="button" onclick="switchTelemetryView('concentration')" id="telBtnConc" class="px-2.5 py-0.5 rounded text-slate-400">Ext→Int</button>
                                 </div>
                             </div>
                             <div id="telemetryBars" class="grid grid-cols-2 gap-x-4 gap-y-2.5 text-xs"></div>
                         </div>
                     </div>
 
-                    <div class="pt-4 border-t border-slate-200 dark:border-lab-border flex items-center justify-between font-mono text-xs">
-                        <span class="text-slate-400">Arduino · ESP8266 · R Studio</span>
-                        <button type="button" onclick="openDrawer('project', 'cp301')" class="font-bold text-cyan-400 hover:underline">OPEN DOSSIER &gt;</button>
+                    <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between font-mono text-xs">
+                        <span class="text-slate-400">7–10 kV Flyback · Arduino · R Studio</span>
+                        <button type="button" onclick="openDrawer('project', 'cp301')" class="font-bold text-sky-400 hover:underline">INSPECT DOSSIER &gt;</button>
                     </div>
                 </article>
 
@@ -374,10 +442,10 @@
 
         <!-- ==================== 02 // ANALYTICAL & INTERDISCIPLINARY RESEARCH ==================== -->
         <section id="research" class="scroll-mt-24 space-y-6">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-lab-border pb-4">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-4">
                 <div>
                     <span class="font-mono text-xs font-bold uppercase tracking-widest text-emerald-400">02 // ANALYTICAL &amp; INTERDISCIPLINARY RESEARCH</span>
-                    <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-1">Environmental, Ballistic &amp; Cognitive Studies</h2>
+                    <h2 class="font-display text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mt-1">Environmental, Ballistic &amp; Cognitive Studies</h2>
                 </div>
                 <span class="font-mono text-xs text-slate-400">Technical Poster &amp; Coursework Studies</span>
             </div>
@@ -385,9 +453,9 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                 
                 <!-- HS202 -->
-                <article class="panel-hover bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border rounded-3xl p-6 flex flex-col justify-between space-y-4">
+                <article class="machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 flex flex-col justify-between space-y-4">
                     <div class="space-y-3">
-                        <span class="px-2.5 py-1 rounded-md bg-emerald-500/15 border border-emerald-500/30 font-mono text-[11px] font-bold text-emerald-400">HS202 · NEW STUDY</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 font-mono text-[11px] font-bold text-emerald-400">HS202 · NEW STUDY</span>
                         <h3 class="font-display text-lg font-bold text-slate-900 dark:text-white">
                             Soil Pollution Due to Heavy Metal Wastage
                         </h3>
@@ -395,16 +463,16 @@
                             Group 21 environmental study investigating Pb, Cd, Hg, and As contamination across Indian agricultural regions. Analyzed a 76-respondent survey on soil fertility loss (68.4% nutrient depletion, 64.5% structural disruption) and phytoremediation frameworks.
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-200 dark:border-lab-border flex items-center justify-between font-mono text-xs">
+                    <div class="pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between font-mono text-xs">
                         <span class="text-slate-400">n = 76 Survey</span>
                         <button type="button" onclick="openDrawer('project', 'hs202')" class="font-bold text-emerald-400 hover:underline">DETAILS &gt;</button>
                     </div>
                 </article>
 
                 <!-- Technical Poster -->
-                <article class="panel-hover bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border rounded-3xl p-6 flex flex-col justify-between space-y-4">
+                <article class="machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 flex flex-col justify-between space-y-4">
                     <div class="space-y-3">
-                        <span class="px-2.5 py-1 rounded-md bg-amber-500/15 border border-amber-500/30 font-mono text-[11px] font-bold text-amber-400">RESEARCH POSTER · NOV 2025</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-amber-500/15 border border-amber-500/30 font-mono text-[11px] font-bold text-amber-400">RESEARCH POSTER · NOV 2025</span>
                         <h3 class="font-display text-lg font-bold text-slate-900 dark:text-white">
                             Gun Barrel Ballistic Stress &amp; Bore Treatment
                         </h3>
@@ -412,16 +480,16 @@
                             Presented at IIT Ropar under Dr. Harpreet Singh &amp; Dr. Pratik K. Ray, analyzing thick-walled Lamé hoop stresses (200–400 MPa) in AISI 4140/4150 steel barrels and bore life extension via duplex coatings, hard chrome, and nitriding.
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-200 dark:border-lab-border flex items-center justify-between font-mono text-xs">
+                    <div class="pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between font-mono text-xs">
                         <span class="text-slate-400">Lamé Hoop Stress</span>
                         <button type="button" onclick="openDrawer('project', 'barrel')" class="font-bold text-amber-400 hover:underline">DETAILS &gt;</button>
                     </div>
                 </article>
 
                 <!-- HS506 -->
-                <article class="panel-hover bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border rounded-3xl p-6 flex flex-col justify-between space-y-4">
+                <article class="machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 flex flex-col justify-between space-y-4">
                     <div class="space-y-3">
-                        <span class="px-2.5 py-1 rounded-md bg-cyan-500/15 border border-cyan-500/30 font-mono text-[11px] font-bold text-cyan-400">HS506 · MAR 2026</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-sky-500/15 border border-sky-500/30 font-mono text-[11px] font-bold text-sky-400">HS506 · MAR 2026</span>
                         <h3 class="font-display text-lg font-bold text-slate-900 dark:text-white">
                             Neurological &amp; Emotional Mechanisms of Profanity
                         </h3>
@@ -429,9 +497,9 @@
                             Empirical survey and cognitive-linguistic study contrasting cortical language networks with subcortical limbic-basal ganglia pathways and L1 vs. L2 bilingual emotional resonance.
                         </p>
                     </div>
-                    <div class="pt-3 border-t border-slate-200 dark:border-lab-border flex items-center justify-between font-mono text-xs">
+                    <div class="pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between font-mono text-xs">
                         <span class="text-slate-400">Brain &amp; Language</span>
-                        <button type="button" onclick="openDrawer('project', 'hs506')" class="font-bold text-cyan-400 hover:underline">DETAILS &gt;</button>
+                        <button type="button" onclick="openDrawer('project', 'hs506')" class="font-bold text-sky-400 hover:underline">DETAILS &gt;</button>
                     </div>
                 </article>
 
@@ -440,7 +508,7 @@
 
         <!-- ==================== 03 // MINIMAL SINGLE-STORY SHOWCASE ==================== -->
         <section id="writing" class="scroll-mt-24 space-y-4">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-lab-border pb-4">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-4">
                 <div>
                     <span class="font-mono text-xs font-bold uppercase tracking-widest text-amber-400">03 // CREATIVE WRITING</span>
                     <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-1">Original Screenplay</h2>
@@ -448,7 +516,7 @@
                 <span class="font-mono text-xs text-slate-400">15-Page Novel-Style Script</span>
             </div>
 
-            <div class="panel-hover bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border rounded-3xl p-6 sm:p-7 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div class="machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-7 flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div class="space-y-2 max-w-3xl">
                     <div class="flex items-center gap-2.5 font-mono text-xs">
                         <span class="px-2.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 text-amber-400 font-bold">CRIME THRILLER · OCT 2026</span>
@@ -461,60 +529,60 @@
                         An original 15-page novel-style crime thriller set along the Krishna River and urban corridors of Vijayawada, blending English scene direction with natural Tenglish dialogue and multi-layered character arcs.
                     </p>
                 </div>
-                <button type="button" onclick="openDrawer('project', 'screenplay')" class="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-lab-panel border border-slate-200 dark:border-lab-border hover:border-amber-400/50 font-mono text-xs font-bold text-amber-400 transition-colors">
+                <button type="button" onclick="openDrawer('project', 'screenplay')" class="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:border-amber-400 font-mono text-xs font-bold text-amber-400 transition-colors">
                     <span>READ SCRIPT NOTES</span>
                     <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
                 </button>
             </div>
         </section>
 
-        <!-- ==================== 04 // EXPERIENCE, SKILLS & LEADERSHIP ==================== -->
+        <!-- ==================== 04 // EXPERIENCE, LEADERSHIP & SKILLS ==================== -->
         <section id="experience" class="scroll-mt-24 space-y-6">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-lab-border pb-4">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-4">
                 <div>
-                    <span class="font-mono text-xs font-bold uppercase tracking-widest text-cyan-500">04 // EXPERIENCE, LEADERSHIP &amp; SKILLS</span>
-                    <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-1">Industry, Governance &amp; Technical Stack</h2>
+                    <span class="font-mono text-xs font-bold uppercase tracking-widest text-sky-400">04 // EXPERIENCE, LEADERSHIP &amp; SKILLS</span>
+                    <h2 class="font-display text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mt-1">Industry, Governance &amp; Technical Stack</h2>
                 </div>
                 <span class="font-mono text-xs text-slate-400">IIT Ropar &amp; Industry</span>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="panel-hover bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border rounded-2xl p-5 space-y-2">
+                <div class="machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-2">
                     <span class="font-mono text-[11px] font-bold text-amber-400">MAY – JUN 2025 · INDUSTRIAL</span>
                     <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">Industrial Engineering Intern</h3>
-                    <p class="font-mono text-xs text-cyan-400">BHEL, Hyderabad</p>
+                    <p class="font-mono text-xs text-sky-400">BHEL, Hyderabad</p>
                     <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">Analyzed heavy manufacturing shop-floor workflows, machining sequencing, and production bottlenecks.</p>
                 </div>
 
-                <div class="panel-hover bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border rounded-2xl p-5 space-y-2">
-                    <span class="font-mono text-[11px] font-bold text-cyan-400">SEP – NOV 2026 · 190 HOURS</span>
+                <div class="machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-2">
+                    <span class="font-mono text-[11px] font-bold text-sky-400">SEP – NOV 2026 · 190 HOURS</span>
                     <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">Media &amp; PR Intern</h3>
                     <p class="font-mono text-xs text-amber-400">Jarurat Care Foundation (CERT-945CB75A)</p>
                     <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">Led social media outreach, Twitter/X content calendars, and GI Cancer awareness campaigns.</p>
                 </div>
 
-                <div class="panel-hover bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border rounded-2xl p-5 space-y-2">
+                <div class="machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-2">
                     <span class="font-mono text-[11px] font-bold text-emerald-400">NOV 2026 – PRESENT · ACTIVE</span>
                     <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">Communications &amp; Outreach Intern</h3>
-                    <p class="font-mono text-xs text-cyan-400">Pledge India Foundation</p>
+                    <p class="font-mono text-xs text-sky-400">Pledge India Foundation</p>
                     <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">Driving donor mobilization campaigns and public communications for social impact initiatives.</p>
                 </div>
 
-                <div class="panel-hover bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border rounded-2xl p-5 space-y-2">
-                    <span class="font-mono text-[11px] font-bold text-cyan-400">2024 – 2025 · IIT ROPAR</span>
+                <div class="machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-2">
+                    <span class="font-mono text-[11px] font-bold text-sky-400">2024 – 2025 · IIT ROPAR</span>
                     <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">General Secretary — TCA</h3>
                     <p class="font-mono text-xs text-amber-400">Telugu Cultural Association, IIT Ropar</p>
                     <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">Directed campus cultural festivals, event logistics, and student community engagement.</p>
                 </div>
 
-                <div class="panel-hover bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border rounded-2xl p-5 space-y-2">
-                    <span class="font-mono text-[11px] font-bold text-cyan-400">IIT ROPAR · GOVERNANCE</span>
+                <div class="machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-2">
+                    <span class="font-mono text-[11px] font-bold text-sky-400">IIT ROPAR · GOVERNANCE</span>
                     <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">Hostel Representative &amp; ISP 55</h3>
                     <p class="font-mono text-xs text-amber-400">IIT Ropar &amp; Internshala</p>
                     <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">Coordinated resident welfare, mess governance, and technical upskilling outreach across campus.</p>
                 </div>
 
-                <div class="panel-hover bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border rounded-2xl p-5 space-y-2">
+                <div class="machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-2">
                     <span class="font-mono text-[11px] font-bold text-amber-400">COURSEWORK &amp; TOOLS</span>
                     <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">Core Engineering Stack</h3>
                     <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
@@ -526,46 +594,46 @@
 
         <!-- ==================== 05 // VERIFIED CREDENTIALS ==================== -->
         <section id="credentials" class="scroll-mt-24 space-y-6">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-lab-border pb-4">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-4">
                 <div>
                     <span class="font-mono text-xs font-bold uppercase tracking-widest text-amber-400">05 // VERIFIED CREDENTIALS</span>
-                    <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-1">Certifications &amp; Honors</h2>
+                    <h2 class="font-display text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mt-1">Certifications &amp; Honors</h2>
                 </div>
                 <span class="font-mono text-xs text-slate-400">Click any tile to verify</span>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <button type="button" onclick="openDrawer('cert', 'dgca')" class="text-left panel-hover bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border hover:border-cyan-400/60 rounded-2xl p-5 space-y-1.5">
-                    <span class="font-mono text-[10px] font-bold text-cyan-400">AVIATION // UAV</span>
+                <button type="button" onclick="openDrawer('cert', 'dgca')" class="text-left machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-1.5">
+                    <span class="font-mono text-[10px] font-bold text-sky-400">AVIATION // UAV</span>
                     <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">DGCA Certified Drone Pilot Training</h3>
                     <p class="text-xs text-slate-400">FlyQVision in association with IIT Bombay</p>
                 </button>
 
-                <button type="button" onclick="openDrawer('cert', 'googleai')" class="text-left panel-hover bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border hover:border-cyan-400/60 rounded-2xl p-5 space-y-1.5">
+                <button type="button" onclick="openDrawer('cert', 'googleai')" class="text-left machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-1.5">
                     <span class="font-mono text-[10px] font-bold text-amber-400">AI CAPSTONE</span>
                     <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">Google AI Agents Intensive</h3>
                     <p class="text-xs text-slate-400">Google &amp; Kaggle · 5-Day Intensive</p>
                 </button>
 
-                <button type="button" onclick="openDrawer('cert', 'jarurat')" class="text-left panel-hover bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border hover:border-cyan-400/60 rounded-2xl p-5 space-y-1.5">
+                <button type="button" onclick="openDrawer('cert', 'jarurat')" class="text-left machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-1.5">
                     <span class="font-mono text-[10px] font-bold text-emerald-400">CERT-945CB75A</span>
                     <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">Public Relations Internship (190 Hrs)</h3>
                     <p class="text-xs text-slate-400">Jarurat Care Foundation</p>
                 </button>
 
-                <button type="button" onclick="openDrawer('cert', 'mygov')" class="text-left panel-hover bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border hover:border-cyan-400/60 rounded-2xl p-5 space-y-1.5">
+                <button type="button" onclick="openDrawer('cert', 'mygov')" class="text-left machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-1.5">
                     <span class="font-mono text-[10px] font-bold text-amber-400">GOVT OF INDIA</span>
                     <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">Consumer Awareness ("Jago Grahak Jago")</h3>
                     <p class="text-xs text-slate-400">Ministry of Consumer Affairs &amp; MyGov</p>
                 </button>
 
-                <button type="button" onclick="openDrawer('cert', 'isp55')" class="text-left panel-hover bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border hover:border-cyan-400/60 rounded-2xl p-5 space-y-1.5">
-                    <span class="font-mono text-[10px] font-bold text-cyan-400">07/01/2026</span>
+                <button type="button" onclick="openDrawer('cert', 'isp55')" class="text-left machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-1.5">
+                    <span class="font-mono text-[10px] font-bold text-sky-400">07/01/2026</span>
                     <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">ISP 55 First Trainings Contest Webinar</h3>
                     <p class="text-xs text-slate-400">Internshala Student Partner Team</p>
                 </button>
 
-                <button type="button" onclick="openDrawer('cert', 'samsung')" class="text-left panel-hover bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border hover:border-cyan-400/60 rounded-2xl p-5 space-y-1.5">
+                <button type="button" onclick="openDrawer('cert', 'samsung')" class="text-left machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-1.5">
                     <span class="font-mono text-[10px] font-bold text-emerald-400">SEP 2026</span>
                     <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">Samsung Members Star Shortlist</h3>
                     <p class="text-xs text-slate-400">Samsung India Community Program</p>
@@ -575,27 +643,418 @@
 
         <!-- ==================== 06 // CONTACT & DIRECT DISPATCH ==================== -->
         <section id="contact" class="scroll-mt-24 space-y-6">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-lab-border pb-4">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-4">
                 <div>
-                    <span class="font-mono text-xs font-bold uppercase tracking-widest text-cyan-500">06 // CONTACT &amp; DIRECT DISPATCH</span>
-                    <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mt-1">Get In Touch</h2>
+                    <span class="font-mono text-xs font-bold uppercase tracking-widest text-sky-400">06 // CONTACT &amp; DIRECT DISPATCH</span>
+                    <h2 class="font-display text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mt-1">Get In Touch</h2>
                 </div>
                 <span class="font-mono text-xs text-slate-400">Rupnagar, Punjab · Vijayawada, AP</span>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
                 <div class="lg:col-span-5 space-y-4">
-                    <div class="bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border rounded-3xl p-6 space-y-3">
-                        <span class="font-mono text-[11px] font-bold text-cyan-400">IIT ROPAR ACADEMIC INBOX</span>
+                    <div class="machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 space-y-3">
+                        <span class="font-mono text-[11px] font-bold text-sky-400">IIT ROPAR ACADEMIC INBOX</span>
                         <p class="font-mono text-sm sm:text-base font-bold text-slate-900 dark:text-white break-all">2022meb1303@iitrpr.ac.in</p>
                         <div class="flex gap-2">
-                            <a href="mailto:2022meb1303@iitrpr.ac.in?subject=Inquiry%20from%20Vijay%20Badugu%20Portfolio" class="px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-mono text-xs font-extrabold">COMPOSE MAIL</a>
-                            <button type="button" onclick="copyEmail('2022meb1303@iitrpr.ac.in')" class="px-3.5 py-2 rounded-xl border border-slate-300 dark:border-lab-border font-mono text-xs">COPY</button>
+                            <a href="mailto:2022meb1303@iitrpr.ac.in?subject=Inquiry%20from%20Vijay%20Badugu%20Portfolio" class="px-4 py-2 rounded-xl bg-sky-400 text-slate-950 font-mono text-xs font-extrabold">COMPOSE MAIL</a>
+                            <button type="button" onclick="copyEmail('2022meb1303@iitrpr.ac.in')" class="px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 font-mono text-xs">COPY</button>
                         </div>
                     </div>
 
-                    <div class="bg-white dark:bg-lab-surface border border-slate-200 dark:border-lab-border rounded-3xl p-6 space-y-3">
+                    <div class="machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 space-y-3">
                         <span class="font-mono text-[11px] font-bold text-amber-400">PERSONAL &amp; MEDIA INBOX</span>
                         <p class="font-mono text-sm sm:text-base font-bold text-slate-900 dark:text-white break-all">vijay.badugu05@gmail.com</p>
                         <div class="flex gap-2">
-                            <a href="mailto:
+                            <a href="mailto:vijay.badugu05@gmail.com?subject=Inquiry%20from%20Vijay%20Badugu%20Portfolio" class="px-4 py-2 rounded-xl bg-amber-400 text-slate-950 font-mono text-xs font-extrabold">COMPOSE MAIL</a>
+                            <button type="button" onclick="copyEmail('vijay.badugu05@gmail.com')" class="px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 font-mono text-xs">COPY</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 machined-card bg-white/95 dark:bg-[#0B0F19]/95 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-7">
+                    <form onsubmit="handleDispatchSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label for="recipientSelect" class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Target Inbox</label>
+                                <select id="recipientSelect" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 font-mono text-xs">
+                                    <option value="2022meb1303@iitrpr.ac.in">2022meb1303@iitrpr.ac.in (Academic)</option>
+                                    <option value="vijay.badugu05@gmail.com">vijay.badugu05@gmail.com (Personal)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="senderName" class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Your Name / Organization</label>
+                                <input id="senderName" type="text" required placeholder="e.g., Dr. Sharma / Hiring Team" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="messageSubject" class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Subject</label>
+                            <input id="messageSubject" type="text" required placeholder="e.g., Mechanical Engineering Role / Research Collaboration" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="messageBody" class="block font-mono text-[11px] uppercase text-slate-400 mb-1">Message</label>
+                            <textarea id="messageBody" rows="3" required placeholder="Hello Vijay, I reviewed your portfolio and would like to connect regarding..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm resize-none"></textarea>
+                        </div>
+                        <div class="flex items-center justify-between gap-3">
+                            <span id="dispatchFeedback" class="font-mono text-xs text-emerald-400"></span>
+                            <button type="submit" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-sky-400 hover:bg-sky-300 text-slate-950 font-mono text-xs font-extrabold uppercase tracking-wider">
+                                <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                                <span>LAUNCH EMAIL DRAFT</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== FOOTER ==================== -->
+        <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-slate-400">
+            <p class="font-bold text-slate-800 dark:text-slate-200">
+                Vijay Badugu Portfolio · Mechanical Engineer · IIT Ropar (2022MEB1303)
+            </p>
+            <div class="flex items-center gap-3">
+                <a href="mailto:2022meb1303@iitrpr.ac.in" class="hover:text-sky-400">2022meb1303@iitrpr.ac.in</a>
+                <span>·</span>
+                <a href="mailto:vijay.badugu05@gmail.com" class="hover:text-amber-400">vijay.badugu05@gmail.com</a>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- ==================== SLIDE-OVER DETAIL DRAWER ==================== -->
+    <div id="drawerBackdrop" onclick="closeDrawer()" class="fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm hidden opacity-0"></div>
+    <aside id="detailDrawer" aria-modal="true" role="dialog" aria-labelledby="drawerTitle" class="fixed top-0 right-0 z-50 h-full w-full max-w-lg bg-white dark:bg-[#0B0F19] border-l border-slate-200 dark:border-slate-800 shadow-2xl translate-x-full flex flex-col">
+        <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4">
+            <div>
+                <span id="drawerTag" class="font-mono text-[11px] uppercase tracking-wider text-sky-400 font-bold">DOSSIER</span>
+                <h3 id="drawerTitle" class="font-display text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-0.5">Title</h3>
+            </div>
+            <button type="button" onclick="closeDrawer()" aria-label="Close Drawer" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-900">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+        <div id="drawerBody" class="p-6 overflow-y-auto space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300 flex-1"></div>
+        <div class="p-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between font-mono text-xs">
+            <span>Vijay Badugu Portfolio</span>
+            <button type="button" onclick="closeDrawer()" class="px-4 py-2 rounded-xl bg-sky-400 text-slate-950 font-extrabold">CLOSE</button>
+        </div>
+    </aside>
+
+    <!-- ==================== TOAST ==================== -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 pointer-events-none opacity-0 translate-y-2 transition-all duration-200 bg-sky-400 text-slate-950 px-4 py-2.5 rounded-xl shadow-lg font-mono text-xs font-extrabold flex items-center gap-2">
+        <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+        <span id="toastText">Copied to clipboard</span>
+    </div>
+
+    <!-- ==================== INTERACTIVE JAVASCRIPT ==================== -->
+    <script>
+        lucide.createIcons();
+
+        // 1. Theme Switcher
+        const htmlEl = document.documentElement;
+        const themeToggle = document.getElementById('themeToggle');
+        const themeText = document.getElementById('themeText');
+        themeToggle.addEventListener('click', () => {
+            htmlEl.classList.toggle('dark');
+            themeText.textContent = htmlEl.classList.contains('dark') ? 'Forge' : 'Blueprint';
+            lucide.createIcons();
+        });
+
+        // 2. Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+        // 3. Specular Mouse-Tracking Glow on Machined Cards
+        document.querySelectorAll('.machined-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+                card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+            });
+        });
+
+        // 4. Live Focus Ticker
+        const focuses = [
+            "Surface Metallurgy · Duplex Ni/β-NiAl Coatings",
+            "Electrostatic IoT Air Purification (7–10 kV)",
+            "Industrial Operations · BHEL Hyderabad",
+            "Additive Manufacturing (ME549) & Welding (ME561)"
+        ];
+        let fIdx = 0;
+        setInterval(() => {
+            fIdx = (fIdx + 1) % focuses.length;
+            const el = document.getElementById('liveFocusTicker');
+            if (el) el.textContent = focuses[fIdx];
+        }, 3200);
+
+        // 5. Interactive 3D CAD Wireframe Rotor & Particle Reactor Canvas
+        const canvas = document.getElementById('cadReactorCanvas');
+        const ctx = canvas.getContext('2d');
+        let cw, ch, mouseX = 0, mouseY = 0;
+
+        function resizeCanvas() {
+            cw = canvas.width = window.innerWidth;
+            ch = canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('mousemove', e => {
+            mouseX = (e.clientX / cw - 0.5) * 0.6;
+            mouseY = (e.clientY / ch - 0.5) * 0.6;
+        });
+
+        let angle = 0;
+        function renderCadCanvas() {
+            ctx.clearRect(0, 0, cw, ch);
+            angle += 0.005;
+
+            const isDark = htmlEl.classList.contains('dark');
+            const cx = cw * 0.82;
+            const cy = ch * 0.28;
+            const radius = Math.min(cw, ch) * 0.22;
+
+            ctx.save();
+            ctx.translate(cx, cy);
+
+            // Outer CAD Tolerance Rings
+            ctx.strokeStyle = isDark ? 'rgba(56, 189, 248, 0.14)' : 'rgba(2, 132, 199, 0.12)';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([6, 6]);
+            ctx.beginPath();
+            ctx.arc(0, 0, radius * 1.25, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // 3D Projected Turbine / Gear Wireframe Spokes
+            const teeth = 16;
+            for (let i = 0; i < teeth; i++) {
+                const theta = angle + (i / teeth) * Math.PI * 2;
+                const tiltX = Math.cos(theta + mouseX) * radius;
+                const tiltY = Math.sin(theta) * radius * (0.65 + mouseY * 0.3);
+
+                ctx.beginPath();
+                ctx.moveTo(tiltX * 0.45, tiltY * 0.45);
+                ctx.lineTo(tiltX, tiltY);
+                ctx.strokeStyle = i % 4 === 0
+                    ? (isDark ? 'rgba(245, 158, 11, 0.24)' : 'rgba(217, 119, 6, 0.2)')
+                    : (isDark ? 'rgba(56, 189, 248, 0.18)' : 'rgba(2, 132, 199, 0.14)');
+                ctx.lineWidth = i % 4 === 0 ? 1.8 : 1;
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(tiltX, tiltY, 2.2, 0, Math.PI * 2);
+                ctx.fillStyle = i % 4 === 0 ? '#F59E0B' : '#38BDF8';
+                ctx.fill();
+            }
+
+            ctx.restore();
+            requestAnimationFrame(renderCadCanvas);
+        }
+        requestAnimationFrame(renderCadCanvas);
+
+        // 6. Interactive Thermal & Ballistic Bore Simulator
+        function updateThermalSim(val) {
+            const temp = parseInt(val, 10);
+            const tempEl = document.getElementById('simTempDisplay');
+            const phaseEl = document.getElementById('simPhase');
+            const oxideEl = document.getElementById('simOxide');
+            const lifeEl = document.getElementById('simLife');
+
+            if (temp < 650) {
+                tempEl.textContent = `${temp} °C (Baseline / Low Load)`;
+                phaseEl.textContent = 'Watts Ni + α-Fe';
+                oxideEl.textContent = 'Passive NiO Film';
+                lifeEl.textContent = '~1.8× Baseline';
+            } else if (temp < 950) {
+                tempEl.textContent = `${temp} °C (LTHA Diffusion)`;
+                phaseEl.textContent = 'δ-Ni₂Al₃ + β-NiAl';
+                oxideEl.textContent = 'Transitional Al₂O₃';
+                lifeEl.textContent = '~3.2× Baseline';
+            } else {
+                tempEl.textContent = `${temp} °C (HTLA Optimal)`;
+                phaseEl.textContent = "β-NiAl + γ'-Ni₃Al";
+                oxideEl.textContent = 'Dense α-Al₂O₃';
+                lifeEl.textContent = '~5.0× Baseline';
+            }
+        }
+
+        const layerDetails = {
+            beta: 'β-NiAl Outer Zone: Synthesized via HTLA pack cementation (~1000 °C, 15 wt.% Al / 81 wt.% Al₂O₃ / 4 wt.% NH₄Cl). Forms a dense α-Al₂O₃ scale resisting hot propellant oxidation.',
+            gamma: "γ'-Ni₃Al Sublayer: Secondary aluminum reservoir beneath β-NiAl confirmed via Cu-Kα XRD, sustaining high-temperature yield strength under cyclic firing pulses.",
+            nickel: 'Watts-Bath Ni Interlayer (50–80 μm): Electroplated at 1 V / 0.016 A (~0.051 mg/min). Acts as a thermodynamic diffusion barrier blocking brittle Fe-Al intermetallics.',
+            steel: 'Mild Steel Substrate: Baseline Vickers microhardness measured at 128.67 HV 0.5 across 6 indentations prior to surface engineering.'
+        };
+        function inspectLayer(key) {
+            document.getElementById('layerReadout').textContent = layerDetails[key] || '';
+        }
+
+        // 7. CP301 Telemetry Bars
+        const telemetryData = [
+            { name: 'PM2.5', reduction: 40.97, ext: '95.4 µg/m³', int: '56.3 µg/m³', color: 'bg-emerald-400' },
+            { name: 'PM10', reduction: 39.50, ext: '152.3 µg/m³', int: '92.1 µg/m³', color: 'bg-emerald-400' },
+            { name: 'H₂S', reduction: 38.50, ext: '3.9 ppm', int: '2.4 ppm', color: 'bg-sky-400' },
+            { name: 'CO', reduction: 30.45, ext: '2.43 ppm', int: '1.69 ppm', color: 'bg-sky-400' },
+            { name: 'NO₂', reduction: 16.90, ext: '45.5 µg/m³', int: '37.8 µg/m³', color: 'bg-amber-400' },
+            { name: 'CO₂', reduction: 6.40, ext: 'Ambient', int: 'p = 0.008', color: 'bg-amber-400' }
+        ];
+        function switchTelemetryView(mode) {
+            const container = document.getElementById('telemetryBars');
+            const btnRed = document.getElementById('telBtnReduction');
+            const btnConc = document.getElementById('telBtnConc');
+            if (mode === 'reduction') {
+                btnRed.className = 'px-2.5 py-0.5 rounded bg-sky-400 text-slate-950 font-extrabold';
+                btnConc.className = 'px-2.5 py-0.5 rounded text-slate-400';
+            } else {
+                btnConc.className = 'px-2.5 py-0.5 rounded bg-sky-400 text-slate-950 font-extrabold';
+                btnRed.className = 'px-2.5 py-0.5 rounded text-slate-400';
+            }
+            container.innerHTML = telemetryData.map(item => {
+                const w = Math.min(100, Math.round(item.reduction * 2.1));
+                const txt = mode === 'reduction' ? `-${item.reduction.toFixed(1)}%` : `${item.ext}→${item.int}`;
+                return `
+                    <div class="space-y-1">
+                        <div class="flex justify-between font-mono text-[10px]">
+                            <span class="font-bold text-slate-800 dark:text-slate-100">${item.name}</span>
+                            <span class="text-slate-400">${txt}</span>
+                        </div>
+                        <div class="w-full h-1.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                            <div class="h-full ${item.color} rounded-full" style="width:${w}%"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        switchTelemetryView('reduction');
+
+        // 8. Slide-Over Drawer Database
+        const drawerDatabase = {
+            project: {
+                cp302: {
+                    tag: 'CP302 & CP303 · CAPSTONE SURFACE ENGINEERING',
+                    title: 'Life Enhancement of Gun Barrel Using Surface Treatment Techniques',
+                    html: `
+                        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 font-mono text-xs space-y-1">
+                            <div><strong>Supervisors:</strong> Dr. Harpreet Singh (ME) &amp; Dr. Pratik K. Ray (MME), IIT Ropar</div>
+                            <div><strong>Team:</strong> Vijay Badugu, Sugali Akash Naik, Sahil Bharadwaj, Aman Tadavi</div>
+                        </div>
+                        <ul class="list-disc pl-5 space-y-1.5">
+                            <li><strong>Phase I (CP302):</strong> Mild steel Vickers baseline (128.67 HV 0.5); optimized low-voltage Ni electroplating (1 V, 0.016 A, ~0.051 mg/min) producing 50–80 μm diffusion barriers.</li>
+                            <li><strong>Phase II (CP303):</strong> Pack cementation aluminizing (~1000 °C, 4–6 hrs, 15/81/4 wt.% Al/Al₂O₃/NH₄Cl) on rectangular and hollow cylindrical coupons.</li>
+                            <li><strong>XRD Confirmation:</strong> Identified protective β-NiAl and γ'-Ni₃Al intermetallic layers with superior uniformity on curved cylindrical bore geometries.</li>
+                        </ul>
+                    `
+                },
+                cp301: {
+                    tag: 'CP301 · DEVELOPMENT ENGINEERING PROJECT',
+                    title: 'Ionization-Assisted Air Purifying Lattice',
+                    html: `
+                        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 font-mono text-xs space-y-1">
+                            <div><strong>Authors:</strong> Vijay Badugu (2022MEB1303) &amp; Aman Tadavi (2022MEB1355)</div>
+                            <div><strong>Supervisor:</strong> Dr. Prabir Sarkar, Mechanical Engineering, IIT Ropar</div>
+                        </div>
+                        <p>60×120 cm seasoned pine wood <em>jali</em> lattice (30° inclined slats, stainless steel mesh) energized by a 7–10 kV DC Flyback transformer. Validated across a 30-day indoor/outdoor trial near NH-205 using dual Arduino Uno + ESP8266 NodeMCU stations.</p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li><strong>PM2.5:</strong> -40.97% (95.4 → 56.3 µg/m³, p &lt; 0.0001)</li>
+                            <li><strong>PM10:</strong> -39.5% · <strong>H₂S:</strong> -38.5% · <strong>CO:</strong> -30.45% · <strong>NO₂:</strong> -16.9%</li>
+                        </ul>
+                    `
+                },
+                hs202: {
+                    tag: 'HS202 · ENVIRONMENTAL & SOCIAL IMPACT STUDY',
+                    title: 'Soil Pollution Due to Heavy Metal Wastage',
+                    html: `
+                        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 font-mono text-xs space-y-1">
+                            <div><strong>Group 21:</strong> Badugu Vijay (2022MEB1303), Kota Lohith, Juhi Banoth, Mudu Narendra Nayak</div>
+                        </div>
+                        <p>Evaluated heavy metal (Pb, Cd, Hg, As) soil contamination from industrial effluent, mining runoff, and sewage irrigation across Indian agricultural states.</p>
+                        <ul class="list-disc pl-5 space-y-1.5">
+                            <li><strong>Survey Findings (n = 76):</strong> 85.5% baseline awareness; 80.3% mortality risk awareness; 68.4% identified reduced nutrient availability and 64.5% identified soil structure disruption.</li>
+                            <li><strong>Remediation Plan:</strong> Phytoremediation (hyperaccumulating crops), rhizobium-enriched bio-fertilizers, controlled pyrolysis, and industrial discharge enforcement.</li>
+                        </ul>
+                    `
+                },
+                barrel: {
+                    tag: 'TECHNICAL RESEARCH POSTER · NOV 2025',
+                    title: 'Gun Barrel Ballistic Stress & Bore Treatment Poster',
+                    html: `
+                        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 font-mono text-xs space-y-1">
+                            <div><strong>Supervisors:</strong> Dr. Harpreet Singh &amp; Dr. Pratik K. Ray, IIT Ropar</div>
+                            <div><strong>Regime:</strong> 200–400 MPa Chamber Pressure · AISI 4140/4150</div>
+                        </div>
+                        <p>Evaluated thick-walled Lamé hoop stress distributions and bore life extension strategies comparing duplex Ni/β-NiAl coatings, hard chrome lining, and gas nitriding.</p>
+                    `
+                },
+                hs506: {
+                    tag: 'HS506 · BRAIN & LANGUAGE',
+                    title: 'Neurological & Emotional Mechanisms of Profanity',
+                    html: `<p>Empirical survey and cognitive-linguistic study contrasting cortical language networks with subcortical limbic-basal ganglia pathways and L1 vs. L2 bilingual emotional resonance.</p>`
+                },
+                screenplay: {
+                    tag: 'ORIGINAL SCREENPLAY · OCT 2026',
+                    title: 'Vijayawada Crime-Thriller Screenplay',
+                    html: `<p>A 15-page novel-style crime thriller script set along the Krishna River and urban corridors of Vijayawada, blending English scene direction with natural Telugu-English ("Tenglish") dialogue.</p>`
+                }
+            },
+            cert: {
+                dgca: { tag: 'AVIATION CREDENTIAL', title: 'DGCA Certified Drone Pilot Training', html: `<p>Completed DGCA-compliant UAV ground school and multi-rotor flight training conducted by FlyQVision in association with IIT Bombay.</p>` },
+                googleai: { tag: 'AI CAPSTONE CREDENTIAL', title: 'Google AI Agents Intensive', html: `<p>Completed the 5-day Google &amp; Kaggle intensive program covering autonomous LLM agents, tool use, memory, and capstone deployment.</p>` },
+                jarurat: { tag: 'CERT-945CB75A', title: 'Public Relations Internship Certificate (190 Hours)', html: `<p>Awarded by Jarurat Care Foundation (Darpan ID: UA/2023/0370191) for completing 190 hours driving GI Cancer outreach and digital PR campaigns.</p>` },
+                mygov: { tag: 'GOVT OF INDIA', title: 'Consumer Awareness Quiz ("Jago Grahak Jago")', html: `<p>Issued by the Department of Consumer Affairs, Government of India &amp; MyGov, signed by Smt. Nidhi Khare.</p>` },
+                isp55: { tag: '07/01/2026', title: 'ISP 55 First Trainings Contest Webinar', html: `<p>Awarded by Internshala Student Partner Team (VP Marketing) for active campus ambassador participation.</p>` },
+                samsung: { tag: 'SEP 2026', title: 'Samsung Members Star Shortlist', html: `<p>Shortlisted by Samsung India for the Samsung Members Star Creator &amp; Tech Community program.</p>` }
+            }
+        };
+
+        const drawer = document.getElementById('detailDrawer');
+        const backdrop = document.getElementById('drawerBackdrop');
+        function openDrawer(type, key) {
+            const item = drawerDatabase[type]?.[key];
+            if (!item) return;
+            document.getElementById('drawerTag').textContent = item.tag;
+            document.getElementById('drawerTitle').textContent = item.title;
+            document.getElementById('drawerBody').innerHTML = item.html;
+            backdrop.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                backdrop.classList.remove('opacity-0');
+                drawer.classList.remove('translate-x-full');
+            });
+        }
+        function closeDrawer() {
+            backdrop.classList.add('opacity-0');
+            drawer.classList.add('translate-x-full');
+            setTimeout(() => backdrop.classList.add('hidden'), 300);
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+        function copyEmail(email) {
+            const ta = document.createElement('textarea');
+            ta.value = email;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+
+            const toast = document.getElementById('toast');
+            document.getElementById('toastText').textContent = `Copied: ${email}`;
+            toast.classList.remove('opacity-0', 'translate-y-2');
+            clearTimeout(window.__t);
+            window.__t = setTimeout(() => toast.classList.add('opacity-0', 'translate-y-2'), 2300);
+        }
+
+        function handleDispatchSubmit(e) {
+            e.preventDefault();
+            const recipient = document.getElementById('recipientSelect').value;
+            const sender = document.getElementById('senderName').value.trim();
+            const subject = document.getElementById('messageSubject').value.trim();
+            const body = document.getElementById('messageBody').value.trim();
+            const fullBody = `Hello Vijay,\n\n${body}\n\nBest regards,\n${sender}`;
+            document.getElementById('dispatchFeedback').textContent = `Opening draft to ${recipient}...`;
+            window.location.href = `mailto:${encodeURIComponent(recipient)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(fullBody)}`;
+        }
+    </script>
+</body>
+</html>
